@@ -121,7 +121,7 @@ export default function Personal() {
         <div className="mt-8 flex justify-center">
           <Link 
             href="/case-studies" 
-            className="group relative inline-flex items-center gap-2 rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-100 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+            className="group relative inline-flex items-center gap-2 rounded-full bg-zinc-200 px-4 py-2 text-sm font-medium text-zinc-800 transition-colors duration-200 hover:bg-zinc-900 hover:text-zinc-100 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-600"
           >
             View All
           </Link>
@@ -135,7 +135,7 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Connect</h3>
         <p className="mb-5 text-zinc-900 dark:text-zinc-400">
           Feel free to contact me at{' '}
-          <a className="underline dark:text-zinc-200" href={`mailto:${EMAIL}`}>
+          <a className="underline text-zinc-600 dark:text-zinc-200" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
         </p>
