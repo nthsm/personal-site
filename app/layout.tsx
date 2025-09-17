@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Figtree } from 'next/font/google'
 import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
@@ -19,19 +19,14 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Nathan Smith — Product Design',
+    default: 'Nathan Smith',
     template: '%s | Nathan Smith'
   },
   description:  'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
 };
 
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const figtree = Figtree({
+  variable: '--font-figtree',
   subsets: ['latin'],
 })
 
@@ -43,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${figtree.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
