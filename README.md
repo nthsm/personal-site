@@ -1,4 +1,4 @@
-<img src="/public/cover.jpg" alt="Cover image representing Nathan Smith's personal website." width="100%" />
+<img src="/public/cover.png" alt="Cover image representing Nathan Smith's personal website." width="100%" />
 
 ## NTHSM
 
