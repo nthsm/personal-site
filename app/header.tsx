@@ -10,19 +10,19 @@ export function Header() {
       <div className="flex items-center gap-4"> 
         <Image
           src="/headshot.png"
-          alt="Your Name"
+          alt="Nathan Smith"
           width={64}
           height={64}
           className="rounded-full"
         />
         <div>
-          <Link href="/" className="font-medium text-black dark:text-white">
+          <Link href="/" className="font-medium text-zinc-900 dark:text-zinc-100">
             Nathan Smith
           </Link>
           <TextEffect
             as="p"
             preset="fade"
-            className="text-zinc-600 dark:text-zinc-500"
+            className="text-zinc-600 dark:text-zinc-400"
             delay={0.5}
           >
             User-Centered Design
