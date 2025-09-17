@@ -55,7 +55,7 @@ export default function Personal() {
         </div>
       </motion.section>
 
-      <motion.section
+<motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -63,46 +63,20 @@ export default function Personal() {
         <div className="flex flex-col gap-8">
           {CASE_STUDIES.map((caseStudy) => (
             <div key={caseStudy.id} className="space-y-2">
-                <MorphingDialog
-                  transition={{
-                    type: 'spring',
-                    duration: 0.3,
-                    bounce: 0.0,
-                  }}
+              <Link href={caseStudy.link} target="_blank" className="group">
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
                 >
-                <MorphingDialogTrigger>
-                  <motion.div
-                    layoutId={caseStudy.id}
-                    className="relative cursor-pointer overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset transition-transform duration-300 group-hover:scale-105 dark:ring-zinc-800/50"
-                  >
-                    <Image
-                      src={caseStudy.image}
-                      alt={caseStudy.name}
-                      width={800}
-                      height={450}
-                    />
-                  </motion.div>
-                </MorphingDialogTrigger>
-                <MorphingDialogContent>
-                  <MorphingDialogContainer>
-                    <motion.div layoutId={caseStudy.id} className="relative z-10">
-                      <Image
-                        src={caseStudy.image}
-                        alt={caseStudy.name}
-                        width={1200}
-                        height={675}
-                        className="rounded-xl"
-                      />
-                    </motion.div>
-                    <MorphingDialogClose>
-                      <div className="fixed right-6 top-6 h-fit w-fit rounded-full bg-white/80 p-1 backdrop-blur-md">
-                        <XIcon className="h-5 w-5 text-zinc-600" />
-                      </div>
-                    </MorphingDialogClose>
-                  </MorphingDialogContainer>
-                </MorphingDialogContent>
-              </MorphingDialog>
-
+                  <Image
+                    src={caseStudy.image}
+                    alt={caseStudy.name}
+                    width={800}
+                    height={450}
+                    className="transition-transform duration-300 group-hover:scale-105"
+                  />
+                </motion.div>
+              </Link>
               <div className="px-1">
                 <a
                   className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-100"
