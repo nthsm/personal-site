@@ -11,8 +11,8 @@ export function Header() {
         <Image
           src="/headshot.png"
           alt="Your Name"
-          width={48}
-          height={48}
+          width={64}
+          height={64}
           className="rounded-full"
         />
         <div>
