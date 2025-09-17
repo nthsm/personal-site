@@ -2,7 +2,8 @@
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Github, Linkedin, Instagram, XIcon } from 'lucide-react'
+import { XIcon } from 'lucide-react'
+import { SiGithub, SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
 import {
   CASE_STUDIES,
   EMAIL,
@@ -141,13 +142,16 @@ export default function Personal() {
         </p>
         <div className="flex items-center gap-4">
           <a href="https://github.com/nthsm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
-            <Github size={24} />
+            <SiGithub size={24} />
           </a>
           <a href="https://www.linkedin.com/in/nthsm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
-            <Linkedin size={24} />
+            <SiLinkedin size={24} />
           </a>
           <a href="https://www.instagram.com/nhtfm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
-            <Instagram size={24} />
+            <SiInstagram size={24} />
+          </a>
+          <a href="https://www.strava.com/athletes/139602024" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white">
+            <SiStrava size={24} />
           </a>
         </div>
       </motion.section>
