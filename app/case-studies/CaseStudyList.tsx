@@ -23,7 +23,6 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
-// This component receives the case studies and renders them
 export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[] }) {
   return (
     <motion.main
@@ -36,10 +35,10 @@ export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Case Studies</h3>
+        <h3 className="mb-5 text-lg font-medium">Case Studies Collection</h3>
         <div className="flex flex-col gap-8">
           {caseStudies.map((caseStudy) => (
-            <div key={caseStudy.id} className="space-y-4">
+            <div key={caseStudy.id} className="space-y-2">
               <Link href={caseStudy.link} className="group">
                 <motion.div 
                   whileHover={{ scale: 1.02 }} 
@@ -54,18 +53,16 @@ export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[
                   />
                 </motion.div>
               </Link>
-              <div className="px-1">
-                <a
-                  className="group relative inline-block text-lg font-medium text-zinc-900 dark:text-zinc-50"
-                  href={caseStudy.link}
-                >
+              
+              <Link href={caseStudy.link} className="group block px-1">
+                <h4 className="group relative inline-block font-[450] text-zinc-900 dark:text-zinc-100">
                   {caseStudy.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-100 transition-all duration-200 group-hover:max-w-full"></span>
+                </h4>
+                <p className="text-base text-zinc-900 dark:text-zinc-400">
                   {caseStudy.description}
                 </p>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 import CaseStudyList from './CaseStudyList'
 import { type CaseStudy } from '@/app/data'
 
-// This function now filters to only read directories
 function getCaseStudies() {
   const postsDirectory = path.join(process.cwd(), 'app/case-studies/(posts)')
   const allEntries = fs.readdirSync(postsDirectory)
@@ -12,12 +11,12 @@ function getCaseStudies() {
   const caseStudies = allEntries
     .filter(entry => {
       const fullPath = path.join(postsDirectory, entry)
-      return fs.statSync(fullPath).isDirectory() // Only keep items that are folders
+      return fs.statSync(fullPath).isDirectory()
     })
     .map(slug => {
       const filePath = path.join(postsDirectory, slug, 'page.mdx')
       const fileContents = fs.readFileSync(filePath, 'utf8')
-      const { data } = matter(fileContents) // Parses the metadata
+      const { data } = matter(fileContents)
 
       return {
         id: slug,
