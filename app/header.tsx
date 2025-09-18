@@ -7,9 +7,9 @@ import { motion } from 'framer-motion'
 export function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
-      <div className="flex items-center gap-4">
-        <Link href="/">
-          <motion.div whileHover={{ scale: 1.07 }}>
+      <Link href="/" className="group">
+        <div className="flex items-center gap-4">
+          <motion.div whileHover={{ scale: 1.08 }}>
             <Image
               src="/headshot.png"
               alt="Nathan Smith"
@@ -18,22 +18,21 @@ export function Header() {
               className="rounded-full"
             />
           </motion.div>
-        </Link>
-
-        <div>
-          <Link href="/" className="font-medium text-zinc-900 dark:text-zinc-50">
-            Nathan Smith
-          </Link>
-          <TextEffect
-            as="p"
-            preset="fade"
-            className="text-zinc-700 dark:text-zinc-400"
-            delay={0.5}
-          >
-            Product Designer
-          </TextEffect>
+          <div>
+            <div className="font-medium text-zinc-900 dark:text-zinc-50">
+              Nathan Smith
+            </div>
+            <TextEffect
+              as="p"
+              preset="fade"
+              className="text-zinc-700 dark:text-zinc-400"
+              delay={0.5}
+            >
+              Product Designer
+            </TextEffect>
+          </div>
         </div>
-      </div>
+      </Link>
     </header>
   )
 }
