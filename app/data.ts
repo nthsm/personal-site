@@ -13,19 +13,12 @@ type SocialLink = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    name: 'GameKnight',
+    name: 'Sleeper App Redesign',
     description:
-      'Crown your crew.',
-    link: '/case-studies/gameknight',
+      'A case study on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
+    link: '/case-studies/sleeper',
     image: '/placeholder.png',
     id: 'project1',
-  },
-  {
-    name: 'ChoreBud',
-    description: 'Making chores easier.',
-    link: '/case-studies/chorebud',
-    image: '/placeholder.png',
-    id: 'project2',
   },
 ]
 
