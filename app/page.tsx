@@ -38,38 +38,38 @@ export default function Personal() {
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
+        className="space-y-4"
       >
-        <div className="flex-1">
-          <p className="text-zinc-900 dark:text-zinc-300">
-            Passionate about untangling complex problems to create 
-            simple, intuitive, and effective digital experiences.
-          </p>
-        </div>
+        <p className="max-w-xl text-zinc-900 dark:text-zinc-400">
+          Passionate about untangling complex problems to create simple, intuitive, and effective digital experiences.
+        </p>
       </motion.section>
 
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Featured Case Studies</h3>
+        <h3 className="mb-5 text-lg font-medium">Featured Case Study</h3>
         <div className="flex flex-col gap-8">
           {CASE_STUDIES.slice(0, 2).map((caseStudy) => (
-            <div key={caseStudy.id} className="space-y-4">
-              <Link href={caseStudy.link} className="group">
-                <motion.div 
-                  whileHover={{ scale: 1.02 }} 
-                  className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
-                >
-                  <Image
-                    src={caseStudy.image}
-                    alt={caseStudy.name}
-                    width={800}
-                    height={450}
-                    className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
-                  />
-                </motion.div>
-              </Link>
-              <Link href={caseStudy.link} className="group block px-1">
+            <Link
+              href={caseStudy.link}
+              key={caseStudy.id}
+              className="group block space-y-2"
+            >
+              <motion.div 
+                whileHover={{ scale: 1.02 }} 
+                className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
+              >
+                <Image
+                  src={caseStudy.image}
+                  alt={caseStudy.name}
+                  width={800}
+                  height={450}
+                  className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+                />
+              </motion.div>
+              <div className="px-1">
                 <h4 className="group relative inline-block font-[450] text-zinc-900 dark:text-zinc-100">
                   {caseStudy.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-100 transition-all duration-200 group-hover:max-w-full"></span>
@@ -77,8 +77,8 @@ export default function Personal() {
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {caseStudy.description}
                 </p>
-              </Link>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
         <div className="mt-8 flex justify-center">
