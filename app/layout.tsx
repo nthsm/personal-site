@@ -10,7 +10,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 }
 
 export const metadata: Metadata = {
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Nathan Smith'
   },
   description: 'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
+  manifest: '/manifest.json',
   icons: {
     icon: '/icon.png',
     shortcut: '/favicon.ico',
