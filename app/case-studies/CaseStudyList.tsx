@@ -1,11 +1,8 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation' // 1. Import the useRouter hook
 import { type CaseStudy } from '@/app/data'
-
-// 1. Create a new component that is both a motion component AND a Next.js Link
-const MotionLink = motion(Link)
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -27,6 +24,8 @@ const TRANSITION_SECTION = {
 }
 
 export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[] }) {
+  const router = useRouter() // 2. Initialize the router
+
   return (
     <motion.main
       className="space-y-24"
@@ -41,11 +40,12 @@ export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[
         <h3 className="mb-5 text-lg font-medium">Case Studies Collection</h3>
         <div className="flex flex-col gap-8">
           {caseStudies.map((caseStudy) => (
-            <MotionLink
+            // 3. This is now a motion.div with an onClick handler, not a Link
+            <motion.div
               key={caseStudy.id}
-              href={caseStudy.link}
-              className="group block space-y-2"
+              className="group block cursor-pointer space-y-2" // Added cursor-pointer for UX
               whileHover={{ scale: 1.02 }}
+              onClick={() => router.push(caseStudy.link)} // 4. Navigate on click
             >
               <div className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50">
                 <Image
@@ -66,7 +66,7 @@ export default function CaseStudyList({ caseStudies }: { caseStudies: CaseStudy[
                   {caseStudy.description}
                 </p>
               </div>
-            </MotionLink>
+            </motion.div>
           ))}
         </div>
       </motion.section>
