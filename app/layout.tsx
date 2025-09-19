@@ -22,7 +22,12 @@ export const metadata: Metadata = {
     default: 'Nathan Smith',
     template: '%s | Nathan Smith'
   },
-  description:  'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
+  description: 'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 const figtree = Figtree({
