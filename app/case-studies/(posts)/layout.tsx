@@ -61,7 +61,7 @@ export default function LayoutBlogPost({
           className="no-underline mb-12 inline-flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>Back to Collection</span>
+          <span>Back to Case Studies</span>
         </Link>
         
         {children}
