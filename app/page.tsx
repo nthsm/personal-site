@@ -6,6 +6,7 @@ import { SiGithub, SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
 import {
   CASE_STUDIES,
   EMAIL,
+  ABOUTME,
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -45,6 +46,16 @@ export default function Personal() {
         <p className="text-zinc-800 dark:text-zinc-400">
           Passionate about untangling complex problems to create 
           simple, intuitive, and effective digital experiences.
+          Feel free to contact me{' '}
+          <a className="underline text-zinc-600 dark:text-zinc-50" href={`mailto:nathan@nthsm.com`}>
+            {EMAIL}
+          </a>
+          . 
+          Learn more about me{' '}
+          <a className="underline text-zinc-600 dark:text-zinc-50" href={`/about-me`}>
+            {ABOUTME}
+          </a>
+          .
         </p>
       </motion.section>
 
@@ -107,33 +118,6 @@ export default function Personal() {
           >
             View All
           </Link>
-        </div>
-      </motion.section>
-
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Connect With Me</h3>
-        <p className="mb-5 text-zinc-800 dark:text-zinc-400">
-          Feel free to contact me at{' '}
-          <a className="underline text-zinc-600 dark:text-zinc-50" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-          </a>
-        </p>
-        <div className="flex items-center gap-4">
-          <a href="https://github.com/nthsm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white">
-            <SiGithub size={24} />
-          </a>
-          <a href="https://www.linkedin.com/in/nthsm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white">
-            <SiLinkedin size={24} />
-          </a>
-          <a href="https://www.instagram.com/nhtfm" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white">
-            <SiInstagram size={24} />
-          </a>
-          <a href="https://www.strava.com/athletes/139602024" target="_blank" rel="noopener noreferrer" className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white">
-            <SiStrava size={24} />
-          </a>
         </div>
       </motion.section>
     </motion.main>

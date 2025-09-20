@@ -73,4 +73,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
-export const EMAIL = 'nathan@nthsm.com'
+export const EMAIL = 'here'
+
+export const ABOUTME = 'here'
