@@ -1,9 +1,9 @@
 'use client'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import { TextLoop } from '@/components/ui/text-loop'
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { SiGithub, SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
 
 const THEMES_OPTIONS = [
   {
@@ -65,14 +65,48 @@ export function Footer() {
   return (
     <footer className="mt-24 border-t border-zinc-300 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        <a href="https://github.com/ibelick/nim" target="_blank">
-          <TextLoop className="text-xs text-zinc-600">
-            <span>© 2025 Nathan Smith</span>
-            <span>Built with Nim</span>
-          </TextLoop>
-        </a>
-        <div className="text-xs text-zinc-400">
-          <ThemeSwitch />
+        {/* Left-aligned content (Copyright text) */}
+        <span className="text-xs text-zinc-600">
+          © 2025 Nathan Smith
+        </span>
+
+        {/* Right-aligned content (Social icons and theme switch) */}
+        <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/nthsm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          >
+            <SiGithub size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/nthsm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          >
+            <SiLinkedin size={18} />
+          </a>
+          <a
+            href="https://www.instagram.com/nhtfm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          >
+            <SiInstagram size={18} />
+          </a>
+          <a
+            href="https://www.strava.com/athletes/139602024"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+          >
+            <SiStrava size={18} />
+          </a>
+          <div className="text-xs text-zinc-400">
+            <ThemeSwitch />
+          </div>
         </div>
       </div>
     </footer>
