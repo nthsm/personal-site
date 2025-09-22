@@ -47,7 +47,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     name: 'Spotify Road Trip Feature',
     description:
-      'N/A',
+      'A conceptual feature for Spotify that transforms passive listening into a collaborative, safe, and memorable road trip experience.',
     link: '/case-studies/spotify-road-trip',
     image: '/placeholder.png',
     id: 'project5',
@@ -73,6 +73,3 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
-export const EMAIL = 'here'
-
-export const ABOUTME = 'here'
