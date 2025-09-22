@@ -87,7 +87,7 @@ export default function Personal() {
 
           {/* Grid of 3 Secondary Projects */}
           {secondaryCaseStudies.length > 0 && (
-            <div className="grid grid-cols-1 gap-1 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-1 sm:grid-cols-3">
               {secondaryCaseStudies.map((caseStudy) => (
                 <Link
                   href={caseStudy.link}
