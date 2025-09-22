@@ -4,8 +4,6 @@ export type CaseStudy = {
   link: string
   image: string
   id: string
-  width?: number
-  height?: number
 }
 
 type SocialLink = {
