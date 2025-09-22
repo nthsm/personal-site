@@ -64,13 +64,12 @@ export default function Personal() {
   transition={TRANSITION_SECTION}
 >
   <h3 className="mb-5 text-lg font-medium">Case Studies</h3>
-  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
-    
+  <div className="flex flex-col gap-1">
     {/* Hero Project */}
     <Link
       href={heroCaseStudy.link}
       key={heroCaseStudy.id}
-      className="group block col-span-2 sm:col-span-3"
+      className="group block"
     >
       <motion.div 
         whileHover={{ scale: 1.02 }} 
@@ -86,27 +85,29 @@ export default function Personal() {
       </motion.div>
     </Link>
 
-    {/* Secondary Projects */}
-    {secondaryCaseStudies.map((caseStudy) => (
-      <Link
-        href={caseStudy.link}
-        key={caseStudy.id}
-        className="group block col-span-1"
-      >
-        <motion.div 
-          whileHover={{ scale: 1.02 }} 
-          className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
+    {/* Grid of 2 Secondary Projects */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+      {CASE_STUDIES.slice(1, 3).map((caseStudy) => ( // <-- Changed 4 to 3 here
+        <Link
+          href={caseStudy.link}
+          key={caseStudy.id}
+          className="group block" // <-- Simplified this className
         >
-          <Image
-            src={caseStudy.image}
-            alt={caseStudy.name}
-            width={320}
-            height={180}
-            className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
-          />
-        </motion.div>
-      </Link>
-    ))}
+          <motion.div 
+            whileHover={{ scale: 1.02 }} 
+            className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
+          >
+            <Image
+              src={caseStudy.image}
+              alt={caseStudy.name}
+              width={320}
+              height={180}
+              className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+            />
+          </motion.div>
+        </Link>
+      ))}
+    </div>
   </div>
   <div className="mt-8 flex justify-center">
     <Link 
