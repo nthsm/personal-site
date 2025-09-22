@@ -52,7 +52,7 @@ export default function Personal() {
           {' '}or learn more{' '}
           <a 
             className="underline text-zinc-600 dark:text-zinc-50" 
-            href="/about-me"
+            href="/about"
           >
             about me
           </a>
