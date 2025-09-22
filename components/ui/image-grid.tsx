@@ -1,17 +1,21 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import {
+  MorphingDialog,
+  MorphingDialogTrigger,
+  MorphingDialogContent,
+  MorphingDialogClose,
+  MorphingDialogContainer,
+} from './morphing-dialog'
 
 const imageUrls = [
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
-  '/placeholder1.png',
+  '/image-grid/PXL7.jpg',
+  '/image-grid/PXL3.jpg',
+  '/image-grid/PXL9.jpg',
+  '/image-grid/PXL4.jpg',
+  '/image-grid/PXL11.jpg',
+  '/image-grid/PXL12.jpg',
 ]
 
 const containerVariants = {
@@ -44,18 +48,34 @@ export function ImageGrid() {
       animate="visible"
     >
       {imageUrls.map((url, index) => (
-        <motion.div
-          key={index}
-          className="relative aspect-square"
-          variants={itemVariants}
-        >
-          <Image
-            src={url}
-            alt={`Grid image ${index + 1}`}
-            width={300}
-            height={300}
-            className="object-cover rounded-xl"
-          />
+        <motion.div variants={itemVariants} key={url}>
+          <MorphingDialog>
+            <MorphingDialogTrigger>
+              <div className="relative aspect-square">
+                <Image
+                  src={url}
+                  alt={`Grid image ${index + 1}`}
+                  width={300}
+                  height={300}
+                  className="object-cover rounded-xl cursor-pointer"
+                />
+              </div>
+            </MorphingDialogTrigger>
+            <MorphingDialogContainer>
+              <MorphingDialogContent>
+                <div className="relative">
+                  <Image
+                    src={url}
+                    alt="Enlarged grid image"
+                    width={1200}
+                    height={900}
+                    className="object-contain rounded-xl max-h-[90vh] max-w-[90vw]"
+                  />
+                  <MorphingDialogClose />
+                </div>
+              </MorphingDialogContent>
+            </MorphingDialogContainer>
+          </MorphingDialog>
         </motion.div>
       ))}
     </motion.div>

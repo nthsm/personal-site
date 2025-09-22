@@ -19,7 +19,6 @@ import {
 import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
 import { XIcon } from 'lucide-react'
-import useClickOutside from '@/hooks/useClickOutside'
 
 export type MorphingDialogContextType = {
   isOpen: boolean
@@ -198,12 +197,6 @@ function MorphingDialogContent({
     }
   }, [isOpen, triggerRef])
 
-  useClickOutside(containerRef, () => {
-    if (isOpen) {
-      setIsOpen(false)
-    }
-  })
-
   return (
     <motion.div
       ref={containerRef}
@@ -227,7 +220,7 @@ export type MorphingDialogContainerProps = {
 }
 
 function MorphingDialogContainer({ children }: MorphingDialogContainerProps) {
-  const { isOpen, uniqueId } = useMorphingDialog()
+  const { isOpen, uniqueId, setIsOpen } = useMorphingDialog()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -248,7 +241,10 @@ function MorphingDialogContainer({ children }: MorphingDialogContainerProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={() => setIsOpen(false)}
+          >
             {children}
           </div>
         </>
