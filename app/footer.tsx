@@ -1,6 +1,6 @@
 'use client'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
+import { MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { SiGithub, SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
@@ -63,14 +63,13 @@ function ThemeSwitch() {
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-zinc-300 px-0 py-4 dark:border-zinc-800">
+    <footer className="mt-32 border-t border-zinc-300 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        {/* Left-aligned content (Copyright text) */}
+
         <span className="text-xs text-zinc-600">
           © 2025 Nathan Smith
         </span>
 
-        {/* Right-aligned content (Social icons and theme switch) */}
         <div className="flex items-center gap-4">
           <a
             href="https://github.com/nthsm"
@@ -78,7 +77,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
           >
-            <SiGithub size={18} />
+            <SiGithub size={16} />
           </a>
           <a
             href="https://www.linkedin.com/in/nthsm"
@@ -86,7 +85,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
           >
-            <SiLinkedin size={18} />
+            <SiLinkedin size={16} />
           </a>
           <a
             href="https://www.instagram.com/nhtfm"
@@ -94,7 +93,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
           >
-            <SiInstagram size={18} />
+            <SiInstagram size={16} />
           </a>
           <a
             href="https://www.strava.com/athletes/139602024"
@@ -102,7 +101,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
           >
-            <SiStrava size={18} />
+            <SiStrava size={16} />
           </a>
           <div className="text-xs text-zinc-400">
             <ThemeSwitch />
