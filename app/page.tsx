@@ -3,9 +3,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
-  CASE_STUDIES,
-  EMAIL,
-  ABOUTME,
+  CASE_STUDIES
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -29,7 +27,7 @@ const TRANSITION_SECTION = {
 
 export default function Personal() {
   const heroCaseStudy = CASE_STUDIES[0];
-  const secondaryCaseStudies = CASE_STUDIES.slice(1, 4); 
+  const secondaryCaseStudies = CASE_STUDIES.slice(1, 3); 
 
   return (
     <motion.main
@@ -43,16 +41,20 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <p className="text-zinc-800 dark:text-zinc-400">
-          Passionate about untangling complex problems to create 
-          simple, intuitive, and effective digital experiences.
-          Feel free to contact me{' '}
-          <a className="underline text-zinc-600 dark:text-zinc-50" href={`mailto:nathan@nthsm.com`}>
-            {EMAIL}
+          I'm passionate about untangling complex problems to create simple, intuitive, and effective digital experiences. 
+          I'm currently looking for new opportunities, so please feel free to{' '}
+          <a 
+            className="underline text-zinc-600 dark:text-zinc-50" 
+            href="mailto:nathan@nthsm.com"
+          >
+            get in touch
           </a>
-          . 
-          Learn more about me{' '}
-          <a className="underline text-zinc-600 dark:text-zinc-50" href={`/about-me`}>
-            {ABOUTME}
+          {' '}or learn more{' '}
+          <a 
+            className="underline text-zinc-600 dark:text-zinc-50" 
+            href="/about-me"
+          >
+            about me
           </a>
           .
         </p>
@@ -64,7 +66,7 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium">Case Studies</h3>
         <div className="flex flex-col gap-1">
-          {/* Hero Project */}
+
           <Link
             href={heroCaseStudy.link}
             key={heroCaseStudy.id}
@@ -84,9 +86,8 @@ export default function Personal() {
             </motion.div>
           </Link>
 
-          {/* Grid of 3 Secondary Projects */}
           {secondaryCaseStudies.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
+            <div className="grid grid-cols-2 gap-1">
               {secondaryCaseStudies.map((caseStudy) => (
                 <Link
                   href={caseStudy.link}
