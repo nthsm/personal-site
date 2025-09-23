@@ -37,20 +37,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 'project3',
   },
   {
-    name: 'IMON Website Redesign',
-    description:
-      'Revitalizing the digital presence for IMON, involving a complete overhaul of the information architecture and visual identity.',
-    link: '/case-studies/imon',
-    image: '/placeholder.png',
-    id: 'project4',
-  },
-  {
     name: 'Spotify Road Trip Feature',
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative, safe, and memorable road trip experience.',
     link: '/case-studies/spotify-road-trip',
     image: '/placeholder.png',
-    id: 'project5',
+    id: 'project4',
   },
 ]
 
