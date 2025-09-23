@@ -1,5 +1,5 @@
 'use client'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, PanInfo } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
@@ -41,19 +41,19 @@ export default function Personal() {
       prevIndex === CASE_STUDIES.length - 1 ? 0 : prevIndex + 1,
     )
   }
-  
+
   useEffect(() => {
     const startAutoScroll = () => {
       timeoutRef.current = setInterval(() => {
         handleNext()
       }, 5000)
-    };
+    }
 
     const stopAutoScroll = () => {
       if (timeoutRef.current) {
         clearInterval(timeoutRef.current)
       }
-    };
+    }
 
     if (!isHovered) {
       startAutoScroll()
@@ -62,6 +62,14 @@ export default function Personal() {
     return () => stopAutoScroll()
   }, [isHovered, currentIndex])
 
+  const handleDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 100
+    if (info.offset.x < -swipeThreshold) {
+      handleNext()
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrev()
+    }
+  }
 
   const currentStudy = CASE_STUDIES[currentIndex]
 
@@ -121,8 +129,8 @@ export default function Personal() {
           </div>
         </div>
 
-        <div 
-          className="relative"
+        <div
+          className="relative cursor-grab active:cursor-grabbing"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -133,6 +141,10 @@ export default function Personal() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.1}
+              onDragEnd={handleDragEnd}
             >
               <Link
                 href={currentStudy.link}
