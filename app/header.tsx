@@ -43,7 +43,7 @@ export function Header() {
                 className="text-zinc-700 dark:text-zinc-400"
                 delay={0.5}
               >
-                Product Designer
+                UX/UI Designer
               </TextEffect>
             </div>
           </div>
