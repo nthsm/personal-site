@@ -33,6 +33,35 @@ export function Header() {
           </div>
         </div>
       </Link>
+      {/* Navigation Links */}
+      <nav>
+        <ul className="flex space-x-4">
+          <li>
+            <Link
+              href="/"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/case-studies"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+            >
+              Case Studies
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   )
 }
