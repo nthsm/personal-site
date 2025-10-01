@@ -25,18 +25,38 @@ const TRANSITION_SECTION = {
   duration: 0.3,
 }
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    zIndex: 0,
+    x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+  }),
+}
+
 export default function Personal() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handlePrev = () => {
+    setDirection(-1)
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? PROJECTS.length - 1 : prevIndex - 1,
     )
   }
 
   const handleNext = () => {
+    setDirection(1)
     setCurrentIndex((prevIndex) =>
       prevIndex === PROJECTS.length - 1 ? 0 : prevIndex + 1,
     )
@@ -62,7 +82,10 @@ export default function Personal() {
     return () => stopAutoScroll()
   }, [isHovered, currentIndex])
 
-  const handleDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    e: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     const swipeThreshold = 100
     if (info.offset.x < -swipeThreshold) {
       handleNext()
@@ -134,38 +157,44 @@ export default function Personal() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.1}
-              onDragEnd={handleDragEnd}
-            >
-              <Link
-                href={currentStudy.link}
-                key={currentStudy.id}
-                className="group block"
+          <div
+            className="relative overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
+            style={{ aspectRatio: '800 / 700' }}
+          >
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.1}
+                onDragEnd={handleDragEnd}
+                className="absolute top-0 left-0 h-full w-full"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="overflow-hidden rounded-xl ring-1 ring-zinc-200/50 ring-inset dark:ring-zinc-800/50"
+                <Link
+                  href={currentStudy.link}
+                  key={currentStudy.id}
+                  className="group block h-full w-full"
                 >
                   <Image
                     src={currentStudy.image}
                     alt={currentStudy.name}
                     width={800}
                     height={700}
-                    className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                </motion.div>
-              </Link>
-            </motion.div>
-          </AnimatePresence>
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
         <div className="mt-4 flex justify-center gap-3">
