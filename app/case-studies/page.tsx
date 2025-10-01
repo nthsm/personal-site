@@ -1,14 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import CaseStudyList from './CaseStudyList'
-import { type CaseStudy } from '@/app/data'
+import ProjectList from './ProjectList'
+import { type Project } from '@/app/data'
 
-function getCaseStudies() {
-  const postsDirectory = path.join(process.cwd(), 'app/case-studies/(posts)')
+function getProjects() {
+  const postsDirectory = path.join(process.cwd(), 'app/projects/(posts)')
   const allEntries = fs.readdirSync(postsDirectory)
 
-  const caseStudies = allEntries
+  const projects = allEntries
     .filter(entry => {
       const fullPath = path.join(postsDirectory, entry)
       return fs.statSync(fullPath).isDirectory()
@@ -20,18 +20,18 @@ function getCaseStudies() {
 
       return {
         id: slug,
-        name: data.title || 'Untitled Case Study',
+        name: data.title || 'Untitled Project',
         description: data.description || 'No description provided.',
         image: data.image || '/placeholder.png',
-        link: `/case-studies/${slug}`,
+        link: `/projects/${slug}`,
       }
     })
 
-  return caseStudies as CaseStudy[]
+  return projects as Project[]
 }
 
-export default function CaseStudiesPage() {
-  const caseStudies = getCaseStudies()
+export default function ProjectsPage() {
+  const projects = getProjects()
 
-  return <CaseStudyList caseStudies={caseStudies} />
+  return <ProjectList projects={projects} />
 }

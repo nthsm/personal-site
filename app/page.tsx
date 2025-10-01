@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { CASE_STUDIES } from './data'
+import { PROJECTS } from './data'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -32,13 +32,13 @@ export default function Personal() {
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? CASE_STUDIES.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? PROJECTS.length - 1 : prevIndex - 1,
     )
   }
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === CASE_STUDIES.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === PROJECTS.length - 1 ? 0 : prevIndex + 1,
     )
   }
 
@@ -71,7 +71,7 @@ export default function Personal() {
     }
   }
 
-  const currentStudy = CASE_STUDIES[currentIndex]
+  const currentStudy = PROJECTS[currentIndex]
 
   return (
     <motion.main
@@ -110,19 +110,19 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="mb-5 flex items-center justify-between">
-          <h3 className="text-lg font-medium">Case Studies</h3>
+          <h3 className="text-lg font-medium">Projects</h3>
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrev}
               className="rounded-full p-1.5 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600"
-              aria-label="Previous case study"
+              aria-label="Previous project"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={handleNext}
               className="rounded-full p-1.5 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-400 dark:focus:ring-zinc-600"
-              aria-label="Next case study"
+              aria-label="Next project"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -159,7 +159,7 @@ export default function Personal() {
                     src={currentStudy.image}
                     alt={currentStudy.name}
                     width={800}
-                    height={450}
+                    height={700}
                     className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
                   />
                 </motion.div>
@@ -169,7 +169,7 @@ export default function Personal() {
         </div>
 
         <div className="mt-4 flex justify-center gap-3">
-          {CASE_STUDIES.map((_, index) => (
+          {PROJECTS.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
@@ -178,14 +178,14 @@ export default function Personal() {
                   ? 'bg-zinc-800 dark:bg-zinc-200'
                   : 'bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-700 dark:hover:bg-zinc-600'
               }`}
-              aria-label={`Go to case study ${index + 1}`}
+              aria-label={`Go to project ${index + 1}`}
             />
           ))}
         </div>
 
         <div className="mt-8 flex justify-center">
           <Link
-            href="/case-studies"
+            href="/projects"
             className="group relative inline-flex items-center gap-2 rounded-full bg-zinc-200 px-4 py-2 text-sm font-medium text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
           >
             View All

@@ -1,4 +1,4 @@
-export type CaseStudy = {
+export type Project = {
   name: string
   description: string
   link: string
@@ -11,12 +11,12 @@ type SocialLink = {
   link: string
 }
 
-export const CASE_STUDIES: CaseStudy[] = [
+export const PROJECTS: Project[] = [
   {
     name: 'Sleeper App Redesign',
     description:
-      'A case study on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
-    link: '/case-studies/sleeper',
+      'A project on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
+    link: '/projects/sleeper',
     image: '/placeholder.png',
     id: 'project1',
   },
@@ -24,7 +24,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     name: 'GameKnight App Concept',
     description:
       'A mobile app concept that removes the logistical hurdles of planning a game night, from scheduling to game selection.',
-    link: '/case-studies/gameknight',
+    link: '/projects/gameknight',
     image: '/placeholder.png',
     id: 'project2',
   },
@@ -32,7 +32,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     name: 'ChoreBud App Concept',
     description:
       'A concept for a mobile app designed to reduce household friction by gamifying and simplifying chore management for roommates.',
-    link: '/case-studies/chorebud',
+    link: '/projects/chorebud',
     image: '/placeholder.png',
     id: 'project3',
   },
@@ -40,7 +40,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     name: 'Spotify Road Trip Feature',
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative, safe, and memorable road trip experience.',
-    link: '/case-studies/spotify-road-trip',
+    link: '/projects/spotify-road-trip',
     image: '/placeholder.png',
     id: 'project4',
   },
@@ -64,4 +64,3 @@ export const SOCIAL_LINKS: SocialLink[] = [
     link: 'https://www.strava.com/athletes/139602024',
   },
 ]
-

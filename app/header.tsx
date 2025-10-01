@@ -10,7 +10,7 @@ import useClickOutside from '@/hooks/useClickOutside'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/projects', label: 'Projects' },
 ]
 
 export function Header() {
