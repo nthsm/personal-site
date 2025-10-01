@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
     description:
       'A project on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
     link: '/projects/sleeper',
-    image: '/placeholder.png',
+    image: '/placeholder1.png',
     id: 'project1',
   },
   {
@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
     description:
       'A mobile app concept that removes the logistical hurdles of planning a game night, from scheduling to game selection.',
     link: '/projects/gameknight',
-    image: '/placeholder.png',
+    image: '/placeholder2.png',
     id: 'project2',
   },
   {
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     description:
       'A concept for a mobile app designed to reduce household friction by gamifying and simplifying chore management for roommates.',
     link: '/projects/chorebud',
-    image: '/placeholder.png',
+    image: '/placeholder3.png',
     id: 'project3',
   },
   {
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative, safe, and memorable road trip experience.',
     link: '/projects/spotify-road-trip',
-    image: '/placeholder.png',
+    image: '/placeholder4.png',
     id: 'project4',
   },
 ]
