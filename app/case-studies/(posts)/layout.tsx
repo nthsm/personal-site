@@ -11,9 +11,9 @@ export default function LayoutBlogPost({
 }) {
   return (
     <>
-      <div className="pointer-events-none fixed left-0 top-0 z-10 h-12 w-full bg-gradient-to-b from-white to-transparent backdrop-blur-sm dark:from-zinc-950" />
+      <div className="pointer-events-none fixed left-0 top-0 z-10 h-12 w-full bg-gradient-to-b from-white to-transparent dark:from-zinc-950" />
       <ScrollProgress
-        className="fixed top-0 z-20 h-0.5 bg-zinc-400 dark:bg-zinc-600"
+        className="fixed top-0 z-20 h-0.5 bg-zinc-500 dark:bg-zinc-600"
         springOptions={{
           bounce: 0,
         }}
