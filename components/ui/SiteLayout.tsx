@@ -48,8 +48,7 @@ const ThemeToggle = () => {
   }, [])
 
   if (!mounted) {
-    // return a placeholder to avoid layout shift
-    return <div className="h-8 w-8" />
+    return <div className="h-8 w-8 rounded-lg bg-zinc-200 dark:bg-zinc-800" />
   }
 
   const toggleTheme = () => {
@@ -59,10 +58,34 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-200 text-zinc-500 transition-colors hover:text-black dark:bg-zinc-800 dark:text-zinc-400 dark:hover:text-white"
+      className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+      <AnimatePresence initial={false} mode="wait">
+        {theme === 'dark' ? (
+          <motion.div
+            key="sun"
+            initial={{ y: -20, opacity: 0, rotate: -90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: 20, opacity: 0, rotate: 90 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="absolute"
+          >
+            <SunIcon className="h-5 w-5" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            initial={{ y: 20, opacity: 0, rotate: 90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: -20, opacity: 0, rotate: -90 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="absolute"
+          >
+            <MoonIcon className="h-5 w-5" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </button>
   )
 }
