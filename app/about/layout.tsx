@@ -8,7 +8,7 @@ export default function LayoutAboutPage({
 }) {
   return (
     <SiteLayout>
-      <main className="prose prose-zinc mx-auto pb-20 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold max-w-none">
+      <main className="prose prose-zinc mx-auto max-w-none pb-20 dark:prose-invert">
         {children}
       </main>
     </SiteLayout>
