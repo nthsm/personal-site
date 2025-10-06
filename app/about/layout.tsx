@@ -1,9 +1,7 @@
 'use client'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 import { SiteLayout } from '@/components/ui/SiteLayout'
 
-export default function LayoutBlogPost({
+export default function LayoutAboutPage({
   children,
 }: {
   children: React.ReactNode
@@ -11,14 +9,6 @@ export default function LayoutBlogPost({
   return (
     <SiteLayout>
       <main className="prose prose-zinc mx-auto pb-20 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold max-w-none">
-        <Link
-          href="/"
-          className="no-underline mb-12 inline-flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Projects</span>
-        </Link>
-        
         {children}
       </main>
     </SiteLayout>
