@@ -1,22 +1,9 @@
 'use client'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import { MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { SiGithub, SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
-
-const THEMES_OPTIONS = [
-  {
-    label: 'Light',
-    id: 'light',
-    icon: <SunIcon className="h-4 w-4" />,
-  },
-  {
-    label: 'Dark',
-    id: 'dark',
-    icon: <MoonIcon className="h-4 w-4" />,
-  },
-]
+import { SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function ThemeSwitch() {
   const [mounted, setMounted] = useState(false)
@@ -27,37 +14,45 @@ function ThemeSwitch() {
   }, [])
 
   if (!mounted) {
-    return null
+    return <div className="h-8 w-8 rounded-lg bg-zinc-200 dark:bg-zinc-800" />
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   return (
-    <AnimatedBackground
-      className="pointer-events-none rounded-lg bg-zinc-200 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
-      defaultValue={theme}
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.2,
-      }}
-      enableHover={false}
-      onValueChange={(id) => {
-        setTheme(id as string)
-      }}
+    <button
+      onClick={toggleTheme}
+      className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+      aria-label="Toggle theme"
     >
-      {THEMES_OPTIONS.map((theme) => {
-        return (
-          <button
-            key={theme.id}
-            className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-transparent text-zinc-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-zinc-950 hover:border-zinc-300 dark:text-zinc-400 dark:data-[checked=true]:text-zinc-50 dark:hover:border-zinc-700"
-            type="button"
-            aria-label={`Switch to ${theme.label} theme`}
-            data-id={theme.id}
+      <AnimatePresence initial={false} mode="wait">
+        {theme === 'dark' ? (
+          <motion.div
+            key="sun"
+            initial={{ y: -20, opacity: 0, rotate: -90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: 20, opacity: 0, rotate: 90 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="absolute"
           >
-            {theme.icon}
-          </button>
-        )
-      })}
-    </AnimatedBackground>
+            <SunIcon className="h-5 w-5" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            initial={{ y: 20, opacity: 0, rotate: 90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: -20, opacity: 0, rotate: -90 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="absolute"
+          >
+            <MoonIcon className="h-5 w-5" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </button>
   )
 }
 
@@ -65,20 +60,9 @@ export function Footer() {
   return (
     <footer className="mt-32 border-t border-zinc-300 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-
-        <span className="text-xs text-zinc-600">
-          © 2025 Nathan Smith
-        </span>
+        <span className="text-xs text-zinc-600">© 2025 Nathan Smith</span>
 
         <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/nthsm"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
-          >
-            <SiGithub size={16} />
-          </a>
           <a
             href="https://www.linkedin.com/in/nthsm"
             target="_blank"
