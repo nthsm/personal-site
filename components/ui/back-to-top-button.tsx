@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { ArrowUp } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-export function BackToTopButton() {
+export function BackToTopButton({ isMenuOpen }: { isMenuOpen?: boolean }) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -29,7 +30,10 @@ export function BackToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-12 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-200 text-zinc-700 shadow-md transition-opacity duration-200 dark:bg-zinc-800 dark:text-zinc-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={cn(
+        'fixed bottom-12 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-200 text-zinc-700 shadow-md transition-opacity duration-200 dark:bg-zinc-800 dark:text-zinc-300',
+        isVisible && !isMenuOpen ? 'opacity-100' : 'opacity-0',
+      )}
       aria-label="Go to top"
     >
       <ArrowUp className="h-5 w-5" />
