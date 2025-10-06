@@ -17,7 +17,7 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Sleeper App Redesign',
+    name: 'Sleeper Mobile App Redesign',
     description:
       'A project on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
     link: '/sleeper',
@@ -25,28 +25,36 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
-    name: 'GameKnight App Concept',
+    name: 'GameKnight Website & Mobile App Concept',
     description:
-      'A mobile app concept that removes the logistical hurdles of planning a game night, from scheduling to game selection.',
+      'A website and mobile app concept that removes the logistical hurdles of planning a game night, from scheduling to game selection.',
     link: '/gameknight',
     image: '/placeholder2.png',
     id: 'project2',
   },
   {
-    name: 'ChoreBud App Concept',
+    name: 'Google Maps Mobile App Redesign',
     description:
-      'A concept for a mobile app designed to reduce household friction by gamifying and simplifying chore management for roommates.',
-    link: '/chorebud',
+      'A case study on improving the user experience and visual interface of the Google Maps mobile app.',
+    link: '/google-maps',
     image: '/placeholder3.png',
     id: 'project3',
   },
   {
-    name: 'Spotify Road Trip Feature',
+    name: 'Spotify Road Trip Mobile Feature',
     description:
-      'A conceptual feature for Spotify that transforms passive listening into a collaborative, safe, and memorable road trip experience.',
+      'A conceptual feature for Spotify that transforms passive listening into a collaborative road trip experience.',
     link: '/spotify-road-trip',
     image: '/placeholder4.png',
     id: 'project4',
+  },
+  {
+    name: 'Kanopy TV App Redesign',
+    description:
+      'A TV app concept that focuses on improving the navigation for the TV app, Kanopy.',
+    link: '/kanopy',
+    image: '/placeholder4.png',
+    id: 'project5',
   },
 ]
 
