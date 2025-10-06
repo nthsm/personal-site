@@ -52,7 +52,7 @@ export default function ContactPage() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="block w-full rounded-md border-zinc-300 bg-zinc-50 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
+                className="block w-full rounded-md border-zinc-300 bg-zinc-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
               />
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="block w-full rounded-md border-zinc-300 bg-zinc-50 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
+                className="block w-full rounded-md border-zinc-300 bg-zinc-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
               />
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                className="block w-full rounded-md border-zinc-300 bg-zinc-50 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
+                className="block w-full rounded-md border-zinc-300 bg-zinc-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 sm:text-sm"
               ></textarea>
             </div>
           </div>
