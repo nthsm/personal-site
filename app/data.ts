@@ -56,6 +56,14 @@ export const PROJECTS: Project[] = [
     image: '/placeholder1.png',
     id: 'project5',
   },
+  {
+    name: 'Portfolio Website & Mobile App Design',
+    description:
+      'A website & mobile app design created for my digital portfolio.',
+    link: '/portfolio',
+    image: '/placeholder2.png',
+    id: 'project6',
+  },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
