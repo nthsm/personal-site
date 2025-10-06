@@ -1,28 +1,26 @@
 'use client'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { BackToTopButton } from '@/components/ui/back-to-top-button'
+import { SiteLayout } from '@/components/ui/SiteLayout'
 
-export default function AboutLayout({
+export default function LayoutBlogPost({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <>
-      <main className="prose prose-zinc mx-auto mt-24 pb-10 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold">
+    <SiteLayout>
+      <main className="prose prose-zinc mx-auto pb-20 dark:prose-invert prose-h1:text-2xl prose-h1:font-semibold max-w-none">
         <Link
           href="/"
           className="no-underline mb-12 inline-flex items-center gap-2 text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>Back to Home</span>
+          <span>Back to Projects</span>
         </Link>
         
         {children}
       </main>
-
-      <BackToTopButton />
-    </>
+    </SiteLayout>
   )
 }
