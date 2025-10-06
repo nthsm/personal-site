@@ -25,7 +25,9 @@ export function ContactBackground() {
       {Array(20)
         .fill(0)
         .map((_, i) => (
-          <MarqueeRow key={i} reverse={i % 2 === 1} />
+          <div key={i} className={i % 2 === 1 ? 'ml-12 md:ml-16' : ''}>
+            <MarqueeRow reverse={i % 2 === 1} />
+          </div>
         ))}
     </div>
   )
