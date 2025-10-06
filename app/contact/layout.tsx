@@ -1,6 +1,7 @@
 'use client'
 import { SiteLayout } from '@/components/ui/SiteLayout'
 import { motion } from 'framer-motion'
+import { ContactBackground } from '@/components/ui/ContactBackground'
 
 export default function LayoutContactPage({
   children,
@@ -10,11 +11,9 @@ export default function LayoutContactPage({
   return (
     <SiteLayout>
       <div
-        className="relative -m-4 flex h-[calc(100vh-4.5rem)] items-center justify-center bg-cover bg-center p-4 md:-m-8 md:h-screen"
-        style={{ backgroundImage: `url('/contact-bg.jpg')` }}
+        className="relative -m-4 flex h-[calc(100vh-4.5rem)] items-center justify-center overflow-hidden bg-zinc-50 p-4 dark:bg-zinc-950 md:-m-8 md:h-screen"
       >
-
-        <div className="absolute inset-0 bg-black/20" />
+        <ContactBackground />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
