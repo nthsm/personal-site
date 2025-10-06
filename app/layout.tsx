@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   description: 'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
   manifest: '/manifest.json',
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/apple-touch-icon.png',
+    icon: '/icon.png?v=2',
+    shortcut: '/favicon.ico?v=2',
+    apple: '/apple-touch-icon.png?v=2',
   },
 };
 
