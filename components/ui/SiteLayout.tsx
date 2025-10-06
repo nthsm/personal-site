@@ -130,7 +130,7 @@ export function SiteLayout({ children, showProgressBar = false }: { children: Re
             </header>
             {showProgressBar && (
                 <ScrollProgress
-                className="h-0.5 bg-zinc-500 dark:bg-zinc-600"
+                className="h-0.5 bg-zinc-800 dark:bg-zinc-600"
                 springOptions={{ bounce: 0 }}
                 />
             )}
@@ -168,7 +168,7 @@ export function SiteLayout({ children, showProgressBar = false }: { children: Re
                 <div className="hidden md:block sticky top-0 z-20 bg-zinc-100 dark:bg-zinc-950 py-4 -mx-8 px-8 mb-4">
                     <div className="h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
                         <ScrollProgress
-                            className="h-full bg-zinc-500 dark:bg-zinc-600 rounded-full"
+                            className="h-full bg-zinc-800 dark:bg-zinc-600 rounded-full"
                             springOptions={{ bounce: 0 }}
                         />
                     </div>
