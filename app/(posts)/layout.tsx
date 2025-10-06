@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { SiteLayout } from '@/components/ui/SiteLayout'
-import { BackToTopButton } from '@/components/ui/back-to-top-button'
 
 export default function LayoutBlogPost({
   children,
@@ -22,7 +21,6 @@ export default function LayoutBlogPost({
         
         {children}
       </main>
-      <BackToTopButton />
     </SiteLayout>
   )
 }
