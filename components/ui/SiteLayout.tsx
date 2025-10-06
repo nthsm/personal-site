@@ -9,6 +9,7 @@ import useClickOutside from '@/hooks/useClickOutside'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { BackToTopButton } from './back-to-top-button'
 
 const NavLink = ({
   href,
@@ -218,6 +219,7 @@ export function SiteLayout({
           {children}
         </main>
       </div>
+      <BackToTopButton isMenuOpen={isMenuOpen} />
     </div>
   )
 }
