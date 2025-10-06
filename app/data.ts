@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     description:
       'A case study on improving the user experience and visual interface of the Google Maps mobile app.',
     link: '/google-maps',
-    image: '/placeholder3.png',
+    image: '/placeholder1.png',
     id: 'project3',
   },
   {
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative road trip experience.',
     link: '/spotify-road-trip',
-    image: '/placeholder4.png',
+    image: '/placeholder2.png',
     id: 'project4',
   },
   {
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     description:
       'A TV app concept that focuses on improving the navigation for the TV app, Kanopy.',
     link: '/kanopy',
-    image: '/placeholder4.png',
+    image: '/placeholder1.png',
     id: 'project5',
   },
 ]
