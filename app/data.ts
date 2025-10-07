@@ -1,4 +1,4 @@
-import { SiLinkedin, SiInstagram, SiStrava } from 'react-icons/si';
+import { SiLinkedin, SiStrava } from 'react-icons/si';
 import { IconType } from 'react-icons';
 
 export type Project = {
@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
     description:
       'A project on improving the user experience and visual interface of the popular fantasy sports app, Sleeper.',
     link: '/sleeper',
-    image: '/placeholder1.png',
+    image: '/placeholder.png',
     id: 'project1',
   },
   {
@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
     description:
       'A website and mobile app concept that removes the logistical hurdles of planning a game night, from scheduling to game selection.',
     link: '/gameknight',
-    image: '/placeholder2.png',
+    image: '/placeholder.png',
     id: 'project2',
   },
   {
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     description:
       'A case study on improving the user experience and visual interface of the Google Maps mobile app.',
     link: '/google-maps',
-    image: '/placeholder1.png',
+    image: '/placeholder.png',
     id: 'project3',
   },
   {
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative road trip experience.',
     link: '/spotify-road-trip',
-    image: '/placeholder2.png',
+    image: '/placeholder.png',
     id: 'project4',
   },
   {
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     description:
       'A TV app concept that focuses on improving the navigation for the TV app, Kanopy.',
     link: '/kanopy',
-    image: '/placeholder1.png',
+    image: '/placeholder.png',
     id: 'project5',
   },
   {
@@ -61,7 +61,7 @@ export const PROJECTS: Project[] = [
     description:
       'A website & mobile app design created for my digital portfolio.',
     link: '/portfolio',
-    image: '/placeholder2.png',
+    image: '/placeholder.png',
     id: 'project6',
   },
   {
@@ -69,7 +69,7 @@ export const PROJECTS: Project[] = [
     description:
       'A website & mobile app concept that gives gamers a place to buy and sell gaming equipment.',
     link: '/circuit-source',
-    image: '/placeholder1.png',
+    image: '/placeholder.png',
     id: 'project7',
   },
   {
@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
     description:
       'A website & mobile app design created for my digital portfolio.',
     link: '/itsmeowornever',
-    image: '/placeholder2.png',
+    image: '/placeholder.png',
     id: 'project8',
   },
 ]
@@ -87,11 +87,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'LinkedIn',
     link: 'https://www.linkedin.com/in/nthsm',
     icon: SiLinkedin,
-  },
-  {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/nhtfm',
-    icon: SiInstagram,
   },
   {
     label: 'Strava',
