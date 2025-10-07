@@ -64,6 +64,22 @@ export const PROJECTS: Project[] = [
     image: '/placeholder2.png',
     id: 'project6',
   },
+  {
+    name: 'Circuit Source Website & Mobile App Concept',
+    description:
+      'A website & mobile app concept that gives gamers a place to buy and sell gaming equipment.',
+    link: '/circuit-source',
+    image: '/placeholder1.png',
+    id: 'project7',
+  },
+  {
+    name: 'It\'s Meow or Never Website Redesign',
+    description:
+      'A website & mobile app design created for my digital portfolio.',
+    link: '/itsmeowornever',
+    image: '/placeholder2.png',
+    id: 'project8',
+  },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
