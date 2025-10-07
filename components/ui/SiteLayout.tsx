@@ -1,4 +1,3 @@
-// components/ui/SiteLayout.tsx
 'use client'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
@@ -95,41 +94,29 @@ const ThemeToggle = () => {
 const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string; onClose?: () => void, isCollapsed?: boolean }) => (
     <Link href="/" className={cn('block h-7', className)} onClick={onClose}>
         {isCollapsed ? (
-            <motion.div
-                key="ns-logo"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.1 } }}
-            >
-                <Image
-                    src="/ns.svg"
-                    alt="Nathan Smith Logo (condensed)"
-                    width={28}
-                    height={28}
-                    priority={true}
-                    className="w-7 h-7"
-                />
-            </motion.div>
+            <Image
+                src="/ns.svg"
+                alt="Nathan Smith Logo (condensed)"
+                width={28}
+                height={28}
+                priority={true}
+                className="w-7 h-7"
+            />
         ) : (
-            <motion.div
-                key="full-logo"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.1 } }}
-            >
-                <Image
-                    src="/nathansmith.svg"
-                    alt="Nathan Smith Logo"
-                    width={200}
-                    height={30}
-                    priority={true}
-                    className="w-auto h-7 dark:h-7"
-                />
-            </motion.div>
+            <Image
+                src="/nathansmith.svg"
+                alt="Nathan Smith Logo"
+                width={200}
+                height={30}
+                priority={true}
+                className="w-auto h-7 dark:h-7"
+            />
         )}
     </Link>
 )
 
 
-const Sidebar = ({ onClose, isCollapsed, onToggleCollapse, isInitialLoad }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; isInitialLoad: boolean }) => (
+const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; isInitialLoad: boolean }) => (
     <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
@@ -140,29 +127,18 @@ const Sidebar = ({ onClose, isCollapsed, onToggleCollapse, isInitialLoad }: { on
             </button>
           )}
         </div>
-        <AnimatePresence>
-          {!isCollapsed && (
-            <motion.nav 
-              initial={isInitialLoad ? { opacity: 0 } : false}
-              animate={{ opacity: 1, transition: { delay: 0.15 } }}
-              exit={{ opacity: 0, transition: { duration: 0.1 } }}
-              className="space-y-4"
-            >
-              <NavLink href="/" onClose={onClose}>Projects</NavLink>
-              <NavLink href="/about" onClose={onClose}>About</NavLink>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+        {!isCollapsed && (
+            <nav className="space-y-4">
+                <NavLink href="/" onClose={onClose}>Projects</NavLink>
+                <NavLink href="/about" onClose={onClose}>About</NavLink>
+            </nav>
+        )}
       </div>
 
       <div className={cn("w-full", isCollapsed ? 'p-4' : 'p-8')}>
         <div className={cn("flex items-center", isCollapsed ? 'flex-col gap-4' : 'justify-between')}>
             {!isCollapsed && (
-                <motion.div 
-                    initial={isInitialLoad ? { opacity: 0 } : false}
-                    animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.15 } }}
-                    className="flex items-center gap-5"
-                >
+                <div className="flex items-center gap-5">
                     {SOCIAL_LINKS.map((social) => (
                       <a
                         key={social.label}
@@ -175,7 +151,7 @@ const Sidebar = ({ onClose, isCollapsed, onToggleCollapse, isInitialLoad }: { on
                         <social.icon size={18} />
                       </a>
                     ))}
-                </motion.div>
+                </div>
             )}
           <div className={cn("flex items-center w-full", isCollapsed ? 'flex-col gap-4' : 'gap-2 justify-end')}>
             <ThemeToggle />
