@@ -5,8 +5,9 @@ import matter from 'gray-matter'
 import { PROJECTS } from '@/app/data'
 import { ReactNode } from 'react'
 
-type Params = {
-  slug: string
+interface GenerateMetadataProps {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 async function getPostMetadata(slug: string) {
@@ -36,12 +37,10 @@ export function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params
-}): Promise<Metadata> {
-  const metadata = await getPostMetadata(params.slug);
+export async function generateMetadata(
+  props: GenerateMetadataProps
+): Promise<Metadata> {
+  const metadata = await getPostMetadata(props.params.slug);
   
   if (metadata) {
     return metadata as Metadata;
