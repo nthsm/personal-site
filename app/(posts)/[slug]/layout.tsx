@@ -52,7 +52,11 @@ export async function generateMetadata(
 export default function DynamicPostLayout({ 
     children, 
     params, 
-    searchParams 
-}: DynamicLayoutProps & { children: ReactNode }) {
+}: { 
+    children: ReactNode; 
+    params: { slug: string }; 
+    searchParams: { [key: string]: string | string[] | undefined };
+}) {
+
   return children
 }
