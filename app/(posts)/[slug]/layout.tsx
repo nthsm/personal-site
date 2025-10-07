@@ -49,14 +49,6 @@ export async function generateMetadata(
   return { title: 'Project Not Found' };
 }
 
-export default function DynamicPostLayout({ 
-    children, 
-    params, 
-}: { 
-    children: ReactNode; 
-    params: { slug: string }; 
-    searchParams: { [key: string]: string | string[] | undefined };
-}) {
-
+export default function DynamicPostLayout({ children }: { children: ReactNode }) {
   return children
 }
