@@ -33,10 +33,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params, searchParams }: { 
-    params: { slug: string }; 
-    searchParams?: { [key: string]: string | string[] | undefined };
-  }
+  { params }: { params: { slug: string } } 
 ): Promise<Metadata> {
   const metadata = await getPostMetadata(params.slug);
   
