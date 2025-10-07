@@ -240,7 +240,7 @@ export function SiteLayout({
         </main>
       </div>
 
-      <BackToTopButton />
+      <BackToTopButton isMenuOpen={isMenuOpen} />
     </div>
   )
 }
