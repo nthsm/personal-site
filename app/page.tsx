@@ -55,7 +55,7 @@ export default function HomePage() {
               </motion.div>
 
               <div className="pt-1">
-                <h4 className="font-medium text-sm text-zinc-900 dark:text-zinc-100">
+                <h4 className="font-medium text-sm md:text-xl text-zinc-900 dark:text-zinc-100">
                   {project.name}
                 </h4>
               </div>
