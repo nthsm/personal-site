@@ -5,6 +5,11 @@ import matter from 'gray-matter'
 import { PROJECTS } from '@/app/data'
 import { ReactNode } from 'react'
 
+interface GenerateMetadataProps {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 async function getPostMetadata(slug: string) {
   const MDX_FILE_PATH = path.join(
     process.cwd(), 
@@ -33,9 +38,9 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  props: GenerateMetadataProps
 ): Promise<Metadata> {
-  const metadata = await getPostMetadata(params.slug);
+  const metadata = await getPostMetadata(props.params.slug);
   
   if (metadata) {
     return metadata as Metadata;
