@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { SiteLayout } from '@/components/ui/SiteLayout'
+import { ProjectNavigation } from '@/components/ui/ProjectNavigation'
 
 export default function LayoutBlogPost({
   children,
@@ -20,6 +21,8 @@ export default function LayoutBlogPost({
         </Link>
         
         {children}
+
+        <ProjectNavigation />
       </main>
     </SiteLayout>
   )
