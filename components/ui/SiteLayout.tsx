@@ -115,9 +115,6 @@ const Sidebar = ({ onClose }: { onClose?: () => void }) => (
         <NavLink href="/about" onClose={onClose}>
           About
         </NavLink>
-        <NavLink href="/contact" onClose={onClose}>
-          Contact
-        </NavLink>
       </nav>
     </div>
     <div className="flex items-center justify-between">
@@ -189,7 +186,7 @@ export function SiteLayout({
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 6h16M4 12h16m-7 6h7"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </button>
@@ -242,7 +239,8 @@ export function SiteLayout({
           {children}
         </main>
       </div>
-      <BackToTopButton isMenuOpen={isMenuOpen} />
+
+      <BackToTopButton />
     </div>
   )
 }
