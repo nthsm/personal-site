@@ -20,7 +20,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const projectDescription = data.description
 
   return {
-    title: `${projectTitle} — Nathan Smith`,
+    title: {
+        absolute: `${projectTitle} — Nathan Smith`
+    },
     description: projectDescription,
   }
 }
