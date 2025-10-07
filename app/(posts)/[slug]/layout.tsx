@@ -5,11 +5,6 @@ import matter from 'gray-matter'
 import { PROJECTS } from '@/app/data'
 import { ReactNode } from 'react'
 
-interface GenerateMetadataProps {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
 async function getPostMetadata(slug: string) {
   const MDX_FILE_PATH = path.join(
     process.cwd(), 
@@ -37,10 +32,13 @@ export function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata(
-  props: GenerateMetadataProps
-): Promise<Metadata> {
-  const metadata = await getPostMetadata(props.params.slug);
+export async function generateMetadata({ 
+    params, 
+}: { 
+    params: { slug: string };
+    searchParams?: { [key: string]: string | string[] | undefined };
+}): Promise<Metadata> {
+  const metadata = await getPostMetadata(params.slug);
   
   if (metadata) {
     return metadata as Metadata;
@@ -49,6 +47,9 @@ export async function generateMetadata(
   return { title: 'Project Not Found' };
 }
 
-export default function DynamicPostLayout({ children }: { children: ReactNode }) {
+export default function DynamicPostLayout({ children }: { 
+    children: ReactNode; 
+    params: { slug: string };
+}) {
   return children
 }
