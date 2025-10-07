@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { PROJECTS } from './data'
-import { SiteLayout } from '@/components/ui/SiteLayout'
+import SiteLayout from '@/components/ui/SiteLayout'
 
 const containerVariants = {
   hidden: { opacity: 0 },
