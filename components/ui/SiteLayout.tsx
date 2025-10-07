@@ -5,13 +5,13 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SOCIAL_LINKS } from '@/app/data'
 import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, X } from 'lucide-react'
+import { SunIcon, MoonIcon, X, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import useClickOutside from '@/hooks/useClickOutside'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { BackToTopButton } from './back-to-top-button'
-import Image from 'next/image' // <--- ADDED IMAGE IMPORT
+import Image from 'next/image'
 
 const NavLink = ({
   href,
@@ -92,71 +92,107 @@ const ThemeToggle = () => {
   )
 }
 
-// NEW Logo component to replace plain text h1
-const LogoComponent = ({ className, onClose }: { className?: string; onClose?: () => void }) => (
-  <Link href="/" className={cn('block', className)} onClick={onClose}>
-    <Image 
-      src="/nathansmith.svg" 
-      alt="Nathan Smith Logo" 
-      width={200} 
-      height={30} 
-      priority={true}
-      // Set height constraints; SVG will scale responsively
-      className="w-auto h-7 dark:h-7" 
-    />
-  </Link>
-)
-
-
-const Sidebar = ({ onClose }: { onClose?: () => void }) => (
-  <aside className="flex h-full flex-col justify-between bg-zinc-50 p-8 dark:bg-zinc-950">
-    <div>
-      <div className="mb-12 flex items-start justify-between">
-        {/* REPLACED PLAIN TEXT with LogoComponent */}
-        <LogoComponent onClose={onClose} />
-        
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="-mr-2 -mt-1 p-2 text-zinc-600 dark:text-zinc-400 md:hidden"
-          >
-            <X size={20} />
-          </button>
-        )}
-      </div>
-      <nav className="space-y-4">
-        <NavLink href="/" onClose={onClose}>
-          Projects
-        </NavLink>
-        <NavLink href="/about" onClose={onClose}>
-          About
-        </NavLink>
-      </nav>
-    </div>
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-5">
-        {SOCIAL_LINKS.map((social) => {
-          const Icon = social.icon
-          return (
-            <a
-              key={social.label}
-              href={social.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string; onClose?: () => void, isCollapsed?: boolean }) => (
+    <Link href="/" className={cn('block h-7', className)} onClick={onClose}>
+        {isCollapsed ? (
+            <motion.div
+                key="ns-logo"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.1 } }}
             >
-              <Icon size={18} />
-            </a>
-          )
-        })}
-      </div>
-      <ThemeToggle />
-    </div>
-  </aside>
+                <Image
+                    src="/ns.svg"
+                    alt="Nathan Smith Logo (condensed)"
+                    width={28}
+                    height={28}
+                    priority={true}
+                    className="w-7 h-7"
+                />
+            </motion.div>
+        ) : (
+            <motion.div
+                key="full-logo"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.1 } }}
+            >
+                <Image
+                    src="/nathansmith.svg"
+                    alt="Nathan Smith Logo"
+                    width={200}
+                    height={30}
+                    priority={true}
+                    className="w-auto h-7 dark:h-7"
+                />
+            </motion.div>
+        )}
+    </Link>
 )
 
-export function SiteLayout({
+
+const Sidebar = ({ onClose, isCollapsed, onToggleCollapse, isInitialLoad }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; isInitialLoad: boolean }) => (
+    <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
+      <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
+        <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
+          <LogoComponent onClose={onClose} isCollapsed={isCollapsed} />
+          {onClose && (
+            <button onClick={onClose} className="-mr-2 -mt-1 p-2 text-zinc-600 dark:text-zinc-400 md:hidden">
+              <X size={20} />
+            </button>
+          )}
+        </div>
+        <AnimatePresence>
+          {!isCollapsed && (
+            <motion.nav 
+              initial={isInitialLoad ? { opacity: 0 } : false}
+              animate={{ opacity: 1, transition: { delay: 0.15 } }}
+              exit={{ opacity: 0, transition: { duration: 0.1 } }}
+              className="space-y-4"
+            >
+              <NavLink href="/" onClose={onClose}>Projects</NavLink>
+              <NavLink href="/about" onClose={onClose}>About</NavLink>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div className={cn("w-full", isCollapsed ? 'p-4' : 'p-8')}>
+        <div className={cn("flex items-center", isCollapsed ? 'flex-col gap-4' : 'justify-between')}>
+            {!isCollapsed && (
+                <motion.div 
+                    initial={isInitialLoad ? { opacity: 0 } : false}
+                    animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.15 } }}
+                    className="flex items-center gap-5"
+                >
+                    {SOCIAL_LINKS.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                      >
+                        <social.icon size={18} />
+                      </a>
+                    ))}
+                </motion.div>
+            )}
+          <div className={cn("flex items-center w-full", isCollapsed ? 'flex-col gap-4' : 'gap-2 justify-end')}>
+            <ThemeToggle />
+            <button
+              onClick={onToggleCollapse}
+              className="relative hidden md:flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+              aria-label="Toggle sidebar"
+            >
+              {isCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+  
+export default function SiteLayout({
   children,
   showProgressBar = false,
 }: {
@@ -164,7 +200,13 @@ export function SiteLayout({
   showProgressBar?: boolean
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    setIsInitialLoad(false);
+  }, []);
 
   useClickOutside(menuRef, () => {
     if (isMenuOpen) setIsMenuOpen(false)
@@ -174,10 +216,16 @@ export function SiteLayout({
     <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
       <div className="md:flex">
         {/* Desktop Sidebar */}
-        <div className="fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:w-64 md:flex-shrink-0 md:border-r">
-          <Sidebar />
+        <div className={cn(
+          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r transition-[width] duration-300 ease-in-out',
+          isCollapsed ? 'md:w-20' : 'md:w-64'
+        )}>
+          <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} isInitialLoad={isInitialLoad} />
         </div>
-        <div className="hidden md:block md:w-64 md:flex-shrink-0"></div>
+        <div className={cn(
+          "hidden md:block md:flex-shrink-0 transition-[width] duration-300 ease-in-out",
+           isCollapsed ? 'md:w-20' : 'md:w-64'
+        )}></div>
 
         {/* Mobile Header */}
         <div className="sticky top-0 z-30 bg-zinc-100/80 backdrop-blur-sm dark:bg-zinc-950/80 md:hidden">
@@ -192,7 +240,7 @@ export function SiteLayout({
                 className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
+                viewBox="0 0 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -232,7 +280,7 @@ export function SiteLayout({
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="fixed bottom-0 right-0 top-0 z-50 w-64 border-l border-zinc-200 dark:border-zinc-800 md:hidden"
               >
-                <Sidebar onClose={() => setIsMenuOpen(false)} />
+                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} isInitialLoad={false} />
               </motion.div>
             </>
           )}
