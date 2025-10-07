@@ -5,9 +5,9 @@ import matter from 'gray-matter'
 import { PROJECTS } from '@/app/data'
 import { ReactNode } from 'react'
 
-type NextPageProps<P = {}, S = {}> = {
-  params: P;
-  searchParams: S;
+interface DynamicLayoutProps {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 async function getPostMetadata(slug: string) {
@@ -38,7 +38,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  props: NextPageProps<{ slug: string }>
+  props: DynamicLayoutProps
 ): Promise<Metadata> {
   const metadata = await getPostMetadata(props.params.slug);
   
@@ -49,9 +49,10 @@ export async function generateMetadata(
   return { title: 'Project Not Found' };
 }
 
-export default function DynamicPostLayout({ children }: { 
-    children: ReactNode; 
-    params: { slug: string }; 
-}) {
+export default function DynamicPostLayout({ 
+    children, 
+    params, 
+    searchParams 
+}: DynamicLayoutProps & { children: ReactNode }) {
   return children
 }
