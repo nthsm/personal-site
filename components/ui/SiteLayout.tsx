@@ -1,3 +1,4 @@
+// components/ui/SiteLayout.tsx
 'use client'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
@@ -10,6 +11,7 @@ import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { BackToTopButton } from './back-to-top-button'
+import Image from 'next/image' // <--- ADDED IMAGE IMPORT
 
 const NavLink = ({
   href,
@@ -90,15 +92,29 @@ const ThemeToggle = () => {
   )
 }
 
+// NEW Logo component to replace plain text h1
+const LogoComponent = ({ className, onClose }: { className?: string; onClose?: () => void }) => (
+  <Link href="/" className={cn('block', className)} onClick={onClose}>
+    <Image 
+      src="/nathansmith.svg" 
+      alt="Nathan Smith Logo" 
+      width={200} 
+      height={30} 
+      priority={true}
+      // Set height constraints; SVG will scale responsively
+      className="w-auto h-7 dark:h-7" 
+    />
+  </Link>
+)
+
+
 const Sidebar = ({ onClose }: { onClose?: () => void }) => (
   <aside className="flex h-full flex-col justify-between bg-zinc-50 p-8 dark:bg-zinc-950">
     <div>
       <div className="mb-12 flex items-start justify-between">
-        <Link href="/" className="block" onClick={onClose}>
-          <h1 className="text-2xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-100">
-            Nathan Smith
-          </h1>
-        </Link>
+        {/* REPLACED PLAIN TEXT with LogoComponent */}
+        <LogoComponent onClose={onClose} />
+        
         {onClose && (
           <button
             onClick={onClose}
@@ -166,11 +182,8 @@ export function SiteLayout({
         {/* Mobile Header */}
         <div className="sticky top-0 z-30 bg-zinc-100/80 backdrop-blur-sm dark:bg-zinc-950/80 md:hidden">
           <header className="flex items-center justify-between border-b border-zinc-200 p-4 dark:border-zinc-800">
-            <Link href="/" className="block">
-              <h1 className="text-xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-100">
-                Nathan Smith
-              </h1>
-            </Link>
+            <LogoComponent className="h-6" /> 
+            
             <button
               onClick={() => setIsMenuOpen(true)}
               className="z-50 -mr-2 p-2 text-zinc-600 dark:text-zinc-400"
