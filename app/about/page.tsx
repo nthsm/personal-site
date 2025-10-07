@@ -2,6 +2,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
+import Link from 'next/link'
+import { Download, Send } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -50,53 +52,72 @@ export default function AboutPage() {
 
   return (
     <motion.div
-      className="not-prose lg:grid lg:grid-cols-2 lg:gap-16" 
+      className="not-prose lg:grid lg:grid-cols-2 lg:gap-16"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       
-      {/* COLUMN 1: ABOUT ME NARRATIVE */}
       <motion.div variants={itemVariants} className="mt-12 lg:mt-0">
-        <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full"> 
-          <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100 not-prose")}>
-              Hello, I'm Nathan Smith.
-          </h1>
-          <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300 not-prose">
-              I design intuitive and human-centered technology.
-          </p>
+        <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between">
           
-          <div className="prose prose-zinc prose-xl dark:prose-invert max-w-none">
-            <p>
-              I am currently completing a <strong>M.S. in Information Technology </strong>
-              at Florida State University, specializing in <strong>User-Centered Design.</strong>
+          <div className="flex-1"> 
+            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100 not-prose")}>
+                Hello, I'm Nathan Smith.
+            </h1>
+            <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300 not-prose">
+                I design intuitive and human-centered technology.
             </p>
-            <p>
-              I am also completing the <strong>Google UX Design</strong> Professional Certificate.
-            </p>
-            <p>
-              I have my B.S. in Management Information Systems with a minor in Computer Science.
-            </p>
-            <p>
-              If you want to know more about my work experience, 
-              you can <strong>view a copy of my resume on LinkedIn.</strong>
-            </p>
-            <p>
-              You can also connect with me on Strava—I'd love to see your favorite routes!
-            </p>
+            
+            <div className="prose prose-zinc prose-xl dark:prose-invert max-w-none">
+              <p>
+                I am currently completing a <strong>M.S. in Information Technology </strong>
+                at Florida State University, specializing in <strong>User-Centered Design.</strong>
+              </p>
+              <p>
+                I am also completing the <strong>Google UX Design</strong> Professional Certificate.
+              </p>
+              <p>
+                I have my B.S. in Management Information Systems with a minor in Computer Science.
+              </p>
+              <p>
+                If you want to know more about my work experience, 
+                you can view a <strong>copy of my resume</strong> on LinkedIn 
+                or <strong>click the download button below.</strong>
+              </p>
+              <p>
+                You can also connect with me on Strava—I'd love to see your favorite routes!
+              </p>
+            </div>
+          </div> 
+
+          <div className="pt-8">
+            <Link
+              href="/nathan_smith_resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="inline-flex justify-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-lg font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline"
+            >
+              <Download className="h-5 w-5 mr-2" />
+              Download Resume
+            </Link>
           </div>
+
         </div>
       </motion.div>
 
-      {/* COLUMN 2: CONTACT FORM */}
       <motion.div variants={itemVariants} className="mt-12 lg:mt-0"> 
-        <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full"> 
-          <h2 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100")}>
-              Let's build something great.
-          </h2>
-          <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300">
-            Have a project in mind or just want to say hello? I'm always open to discussing new opportunities.
-          </p>
+        <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between"> 
+
+          <div className="flex-1"> 
+            <h2 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100")}>
+                Let's build something great.
+            </h2>
+            <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300">
+              Have a project in mind or just want to say hello? I'm always open to discussing new opportunities.
+            </p>
+          </div>
 
           <div className="mt-8 max-w-lg"> 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -163,6 +184,7 @@ export default function AboutPage() {
                   type="submit"
                   className="inline-flex justify-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-lg font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800"
                 >
+                  <Send className="h-5 w-5 mr-2" />
                   Send Message
                 </button>
               </div>
@@ -186,6 +208,7 @@ export default function AboutPage() {
               )}
             </AnimatePresence>
           </div>
+
         </div>
       </motion.div>
     </motion.div>
