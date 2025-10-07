@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between">
           
           <div className="flex-1"> 
-            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100 not-prose")}>
+            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 not-prose gradient-text leading-normal")}>
                 Hello, I'm Nathan Smith.
             </h1>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300 not-prose">
@@ -71,19 +71,19 @@ export default function AboutPage() {
             
             <div className="prose prose-zinc prose-xl dark:prose-invert max-w-none">
               <p>
-                I am currently completing a <strong>M.S. in Information Technology </strong>
-                at Florida State University, specializing in <strong>User-Centered Design.</strong>
+                I am currently completing a <span className="not-prose gradient-text font-bold">M.S. in Information Technology</span>
+                {' '}at Florida State University, specializing in <span className="not-prose gradient-text font-bold">User-Centered Design.</span>
               </p>
               <p>
-                I am also completing the <strong>Google UX Design</strong> Professional Certificate.
+                I am also completing the <span className="not-prose gradient-text font-bold">Google UX Design</span> Professional Certificate.
               </p>
               <p>
                 I have my B.S. in Management Information Systems with a minor in Computer Science.
               </p>
               <p>
                 If you want to know more about my work experience, 
-                you can view a <strong>copy of my resume</strong> on LinkedIn 
-                or <strong>click the download button below.</strong>
+                you can view a <span className="not-prose gradient-text font-bold">copy of my resume</span> on LinkedIn 
+                or <span className="not-prose gradient-text font-bold">click the download button below.</span>
               </p>
               <p>
                 You can also connect with me on Strava—I'd love to see your favorite routes!
@@ -111,11 +111,11 @@ export default function AboutPage() {
         <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between"> 
 
           <div className="flex-1"> 
-            <h2 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-zinc-900 dark:text-zinc-100")}>
+            <h2 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 gradient-text leading-normal")}>
                 Let's build something great.
             </h2>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300">
-              Have a project in mind or just want to say hello? I'm always seeking new opportunities to <strong>learn and grow.</strong>
+              Have a project in mind or just want to say hello? I'm always seeking new opportunities to <span className="not-prose gradient-text font-bold">learn and grow.</span>
             </p>
           </div>
 
