@@ -115,7 +115,7 @@ export default function AboutPage() {
                 Let's build something great.
             </h2>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300">
-              Have a project in mind or just want to say hello? I'm always open to discussing new opportunities.
+              Have a project in mind or just want to say hello? I'm always open to discussing new opportunities to learn and grow.
             </p>
           </div>
 
