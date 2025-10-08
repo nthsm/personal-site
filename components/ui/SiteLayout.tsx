@@ -116,7 +116,7 @@ const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string
 )
 
 
-const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; }) => (
+const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; isInitialLoad: boolean }) => (
     <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
@@ -177,24 +177,29 @@ export default function SiteLayout({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isReady, setIsReady] = useState(false)
+  const [isAnimationReady, setIsAnimationReady] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     const storedIsCollapsed = localStorage.getItem('isCollapsed')
     if (storedIsCollapsed !== null) {
       setIsCollapsed(JSON.parse(storedIsCollapsed))
     }
-    const timer = setTimeout(() => setIsReady(true), 50)
-    return () => clearTimeout(timer)
+    setIsInitialLoad(false);
   }, [])
 
   useEffect(() => {
-    if (isReady) {
+    if (!isInitialLoad) {
+      setIsAnimationReady(true);
+    }
+  }, [isInitialLoad]);
+  
+  useEffect(() => {
+    if (isAnimationReady) {
       localStorage.setItem('isCollapsed', JSON.stringify(isCollapsed))
     }
-  }, [isCollapsed, isReady])
-
+  }, [isCollapsed, isAnimationReady])
 
   useClickOutside(menuRef, () => {
     if (isMenuOpen) setIsMenuOpen(false)
@@ -205,15 +210,15 @@ export default function SiteLayout({
       <div className="md:flex">
         {/* Desktop Sidebar */}
         <div className={cn(
-          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r transition-[width] duration-300 ease-in-out',
-          !isReady && 'transition-none',
+          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r',
+          isAnimationReady && 'transition-[width] duration-300 ease-in-out',
           isCollapsed ? 'md:w-20' : 'md:w-64'
         )}>
-          <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} />
+          <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} isInitialLoad={isInitialLoad} />
         </div>
         <div className={cn(
-          "hidden md:block md:flex-shrink-0 transition-[width] duration-300 ease-in-out",
-          !isReady && 'transition-none',
+          "hidden md:block md:flex-shrink-0",
+          isAnimationReady && 'transition-[width] duration-300 ease-in-out',
            isCollapsed ? 'md:w-20' : 'md:w-64'
         )}></div>
 
@@ -270,7 +275,7 @@ export default function SiteLayout({
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="fixed bottom-0 right-0 top-0 z-50 w-64 border-l border-zinc-200 dark:border-zinc-800 md:hidden"
               >
-                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} />
+                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} isInitialLoad={false} />
               </motion.div>
             </>
           )}
