@@ -33,7 +33,7 @@ export function ProjectNavigation() {
           <Link
             href={prevProject.link}
             className={cn(
-              'w-full group flex flex-col items-start justify-center p-4 rounded-lg transition-colors duration-200',
+              'w-full group flex flex-col items-start justify-start p-4 rounded-lg transition-colors duration-200',
               'bg-transparent hover:bg-zinc-200 dark:bg-transparent dark:hover:bg-zinc-800',
               'no-underline',
             )}
@@ -52,7 +52,7 @@ export function ProjectNavigation() {
           <Link
             href={nextProject.link}
             className={cn(
-              'w-full group flex flex-col items-end justify-center p-4 rounded-lg transition-colors duration-200',
+              'w-full group flex flex-col items-end justify-start p-4 rounded-lg transition-colors duration-200',
               'bg-transparent hover:bg-zinc-200 dark:bg-transparent dark:hover:bg-zinc-800',
               'text-right no-underline',
             )}
