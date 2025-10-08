@@ -42,19 +42,7 @@ const NavLink = ({
 }
 
 const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) => {
-  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted && variant === 'default') {
-    return <div className="h-8 w-8 rounded-lg bg-zinc-200 dark:bg-zinc-800" />
-  } else if (!mounted) {
-    return <div className="h-8 w-8" />
-  }
-
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -72,6 +60,7 @@ const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) 
       onClick={toggleTheme}
       className={cn(baseClasses, variantClasses[variant])}
       aria-label="Toggle theme"
+      suppressHydrationWarning
     >
       <AnimatePresence initial={false} mode="wait">
         {theme === 'dark' ? (
