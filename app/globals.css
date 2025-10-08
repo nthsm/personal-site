@@ -2,6 +2,18 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-uw: 2560px;
+  --breakpoint-suw: 3840px;
+
+  --backdrop-blur-xs: 2px;
+}
+
 .gradient-text {
   background: linear-gradient(to right, #0B698E 2%, #0B8E72 100%);
   -webkit-background-clip: text;
