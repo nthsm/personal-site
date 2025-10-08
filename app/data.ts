@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     id: 'project3',
   },
   {
-    name: 'Spotify \'Road Trip\' Mobile Feature Concept',
+    name: 'Spotify Road Trip Mobile Feature Concept',
     description:
       'A conceptual feature for Spotify that transforms passive listening into a collaborative road trip experience.',
     link: '/spotify-road-trip',
