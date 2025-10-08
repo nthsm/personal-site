@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Download, Send, X } from 'lucide-react'
+import { Download, Send, X, ArrowUpRight } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   that UX design and research requires.
                 </p>
                 <p>
-                  As a designer, I lead with my <span className="not-prose gradient-text font-bold"> core talents of organization and empathy </span> to <span className="not-prose gradient-text font-bold"> create products that are equitable, enjoyable, and useful </span> for all people.
+                  As a designer, I lead with my core talents of <span className="not-prose gradient-text font-bold"> organization and empathy </span> to create products that are <span className="not-prose gradient-text font-bold"> equitable, enjoyable, and useful </span> for all people.
                 </p>
                 <p>
                   I am currently completing a <span className="not-prose gradient-text font-bold">M.S. in Information Technology</span>
@@ -113,15 +113,34 @@ export default function AboutPage() {
                 </p>
                 <p>
                   I graduated from Florida State University in 2025 with a B.S. in Management Information Systems and a minor in Computer Science.
-                   This helps me <span className="not-prose gradient-text font-bold"> understand both the technical and business sides</span> of product development.
+                    This helps me <span className="not-prose gradient-text font-bold"> understand both the technical and business sides</span> of product development.
                 </p>
                 <p>
-                  If you want to know more about my professional experience, 
-                  you can view a <span className="not-prose gradient-text font-bold">copy of my resume on LinkedIn </span>
+                  If you want to know <span className="not-prose gradient-text font-bold"> more about my professional experience, </span>
+                  you can view my resume on{' '}
+                  <a
+                    href="https://www.linkedin.com/in/nthsm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-current no-underline"
+                  >
+                    LinkedIn
+                    <ArrowUpRight className="ml-0.5 h-3 w-3" />
+                  </a>{' '}
                   or click the download button below.
                 </p>
                 <p>
-                  You can also connect with me on Strava—I'd love to see your favorite routes!
+                  You can also connect with me on{' '}
+                  <a
+                    href="https://www.strava.com/athletes/139602024"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-current no-underline"
+                  >
+                    Strava
+                    <ArrowUpRight className="ml-0.5 h-3 w-3" />
+                  </a>
+                  —I'd love to see your favorite routes!
                 </p>
               </div>
             </div> 
