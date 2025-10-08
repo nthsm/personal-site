@@ -41,7 +41,7 @@ const NavLink = ({
   )
 }
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -49,18 +49,28 @@ const ThemeToggle = () => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
+  if (!mounted && variant === 'default') {
     return <div className="h-8 w-8 rounded-lg bg-zinc-200 dark:bg-zinc-800" />
+  } else if (!mounted) {
+    return <div className="h-8 w-8" />
   }
+
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
+  const baseClasses = "relative flex items-center justify-center overflow-hidden transition-colors focus:outline-none";
+        
+  const variantClasses = {
+      default: "h-8 w-8 rounded-lg bg-zinc-200 text-zinc-600 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700",
+      icon: "h-8 w-8 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+  };
+
   return (
     <button
       onClick={toggleTheme}
-      className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+      className={cn(baseClasses, variantClasses[variant])}
       aria-label="Toggle theme"
     >
       <AnimatePresence initial={false} mode="wait">
@@ -73,7 +83,7 @@ const ThemeToggle = () => {
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="absolute"
           >
-            <SunIcon className="h-5 w-5" />
+            <SunIcon className="h-[18px] w-[18px]" />
           </motion.div>
         ) : (
           <motion.div
@@ -84,13 +94,40 @@ const ThemeToggle = () => {
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="absolute"
           >
-            <MoonIcon className="h-5 w-5" />
+            <MoonIcon className="h-[18px] w-[18px]" />
           </motion.div>
         )}
       </AnimatePresence>
     </button>
   )
 }
+
+const MobileNavMenu = ({ onClose }: { onClose?: () => void }) => (
+    <div className="bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-800">
+      <nav className="space-y-4 mb-6">
+        <NavLink href="/" onClose={onClose}>Projects</NavLink>
+        <NavLink href="/about" onClose={onClose}>About</NavLink>
+      </nav>
+      <div className="flex items-center justify-end">
+        <div className="flex items-center gap-2">
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.label}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="p-2 text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+              >
+                <social.icon size={18} />
+              </a>
+            ))}
+            <ThemeToggle variant="icon" />
+        </div>
+      </div>
+    </div>
+);
+
 
 const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string; onClose?: () => void, isCollapsed?: boolean }) => (
     <Link href="/" className={cn('block h-7', className)} onClick={onClose}>
@@ -117,21 +154,16 @@ const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string
 )
 
 
-const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; }) => (
+const Sidebar = ({ isCollapsed, onToggleCollapse }: { isCollapsed: boolean; onToggleCollapse: () => void; }) => (
     <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
-          <LogoComponent onClose={onClose} isCollapsed={onClose ? true : isCollapsed} />
-          {onClose && (
-            <button onClick={onClose} className="-mr-2 -mt-1 p-2 text-zinc-600 dark:text-zinc-400 md:hidden">
-              <X size={20} />
-            </button>
-          )}
+          <LogoComponent isCollapsed={isCollapsed} />
         </div>
         {!isCollapsed && (
             <nav className="space-y-4">
-                <NavLink href="/" onClose={onClose}>Projects</NavLink>
-                <NavLink href="/about" onClose={onClose}>About</NavLink>
+                <NavLink href="/">Projects</NavLink>
+                <NavLink href="/about">About</NavLink>
             </nav>
         )}
       </div>
@@ -185,10 +217,6 @@ export default function SiteLayout({
   })
 
   if (!hasMounted) {
-    // To prevent flash, we can render a static layout or null until the client has mounted
-    // and determined the correct sidebar state from localStorage.
-    // A simple approach is to render the layout with a default state but no transitions.
-    // Let's just use a simple state to avoid content shift.
     return (
        <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
         <div className="md:flex">
@@ -224,7 +252,7 @@ export default function SiteLayout({
             <LogoComponent className="h-6" /> 
             
             <button
-              onClick={() => setIsMenuOpen(true)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="z-50 -mr-2 p-2 text-zinc-600 dark:text-zinc-400"
             >
               <svg
@@ -259,19 +287,19 @@ export default function SiteLayout({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="fixed inset-0 z-40 bg-black/50 md:hidden"
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs md:hidden"
                 onClick={() => setIsMenuOpen(false)}
               />
               <motion.div
                 ref={menuRef}
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="fixed bottom-0 right-0 top-0 z-50 w-64 border-l border-zinc-200 dark:border-zinc-800 md:hidden"
+                initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20, transition: { duration: 0.15 } }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="fixed top-20 right-4 z-50 origin-top-right md:hidden"
               >
-                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} />
+                <MobileNavMenu onClose={() => setIsMenuOpen(false)} />
               </motion.div>
             </>
           )}
