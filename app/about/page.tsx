@@ -175,7 +175,7 @@ export default function AboutPage() {
                       required
                       value={formData.reason}
                       onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     >
                       <option>General Inquiry</option>
                       <option>Project Collaboration</option>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     />
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function AboutPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     />
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export default function AboutPage() {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     ></textarea>
                   </div>
                 </div>
