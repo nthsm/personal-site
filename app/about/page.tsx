@@ -39,7 +39,7 @@ export default function AboutPage() {
     if (status === 'success' || status === 'error') {
       const timer = setTimeout(() => {
         setStatus('')
-      }, 4000) // Hide after 4 seconds
+      }, 4000)
 
       return () => clearTimeout(timer)
     }
@@ -98,17 +98,25 @@ export default function AboutPage() {
               
               <div className="prose prose-zinc prose-xl dark:prose-invert max-w-none">
                 <p>
+                  I love the blend of <span className="not-prose gradient-text font-bold"> creativity, analytical thinking, people skills, and problem-solving </span>
+                  that UX design and research requires.
+                </p>
+                <p>
+                  As a designer, I lead with my <span className="not-prose gradient-text font-bold"> core talents of organization and empathy </span> to <span className="not-prose gradient-text font-bold"> create products that are equitable, enjoyable, and useful </span> for all people.
+                </p>
+                <p>
                   I am currently completing a <span className="not-prose gradient-text font-bold">M.S. in Information Technology</span>
                   {' '}at Florida State University, specializing in <span className="not-prose gradient-text font-bold">User-Centered Design.</span>
                 </p>
                 <p>
-                  I am also completing the <span className="not-prose gradient-text font-bold">Google UX Design</span> Professional Certificate.
+                  I am also completing the <span className="not-prose gradient-text font-bold">Google UX Design Professional Certificate.</span>
                 </p>
                 <p>
-                  I have my B.S. in Management Information Systems with a minor in Computer Science.
+                  I graduated from Florida State University in 2025 with a B.S. in Management Information Systems and a minor in Computer Science.
+                   This helps me <span className="not-prose gradient-text font-bold"> understand both the technical and business sides</span> of product development.
                 </p>
                 <p>
-                  If you want to know more about my work experience, 
+                  If you want to know more about my professional experience, 
                   you can view a <span className="not-prose gradient-text font-bold">copy of my resume on LinkedIn </span>
                   or click the download button below.
                 </p>
