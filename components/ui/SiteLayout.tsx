@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { BackToTopButton } from './back-to-top-button'
 import Image from 'next/image'
+import { useSidebar } from '@/app/context/SidebarContext'
 
 const NavLink = ({
   href,
@@ -116,7 +117,7 @@ const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string
 )
 
 
-const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; isInitialLoad: boolean }) => (
+const Sidebar = ({ onClose, isCollapsed, onToggleCollapse }: { onClose?: () => void; isCollapsed: boolean; onToggleCollapse: () => void; }) => (
     <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
       <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
@@ -176,34 +177,29 @@ export default function SiteLayout({
   showProgressBar?: boolean
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isAnimationReady, setIsAnimationReady] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  useEffect(() => {
-    const storedIsCollapsed = localStorage.getItem('isCollapsed')
-    if (storedIsCollapsed !== null) {
-      setIsCollapsed(JSON.parse(storedIsCollapsed))
-    }
-    setIsInitialLoad(false);
-  }, [])
-
-  useEffect(() => {
-    if (!isInitialLoad) {
-      setIsAnimationReady(true);
-    }
-  }, [isInitialLoad]);
-  
-  useEffect(() => {
-    if (isAnimationReady) {
-      localStorage.setItem('isCollapsed', JSON.stringify(isCollapsed))
-    }
-  }, [isCollapsed, isAnimationReady])
+  const { isCollapsed, setIsCollapsed, hasMounted } = useSidebar();
 
   useClickOutside(menuRef, () => {
     if (isMenuOpen) setIsMenuOpen(false)
   })
+
+  if (!hasMounted) {
+    // To prevent flash, we can render a static layout or null until the client has mounted
+    // and determined the correct sidebar state from localStorage.
+    // A simple approach is to render the layout with a default state but no transitions.
+    // Let's just use a simple state to avoid content shift.
+    return (
+       <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+        <div className="md:flex">
+            <div className="hidden md:block md:flex-shrink-0 md:w-64"></div>
+            <main className="flex-1 p-4 md:p-8">
+                {children}
+            </main>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
@@ -211,14 +207,14 @@ export default function SiteLayout({
         {/* Desktop Sidebar */}
         <div className={cn(
           'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r',
-          isAnimationReady && 'transition-[width] duration-300 ease-in-out',
+          'transition-[width] duration-300 ease-in-out',
           isCollapsed ? 'md:w-20' : 'md:w-64'
         )}>
-          <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} isInitialLoad={isInitialLoad} />
+          <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} />
         </div>
         <div className={cn(
           "hidden md:block md:flex-shrink-0",
-          isAnimationReady && 'transition-[width] duration-300 ease-in-out',
+          'transition-[width] duration-300 ease-in-out',
            isCollapsed ? 'md:w-20' : 'md:w-64'
         )}></div>
 
@@ -275,7 +271,7 @@ export default function SiteLayout({
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
                 className="fixed bottom-0 right-0 top-0 z-50 w-64 border-l border-zinc-200 dark:border-zinc-800 md:hidden"
               >
-                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} isInitialLoad={false} />
+                <Sidebar isCollapsed={false} onToggleCollapse={() => {}} onClose={() => setIsMenuOpen(false)} />
               </motion.div>
             </>
           )}
