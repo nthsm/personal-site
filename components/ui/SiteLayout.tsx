@@ -1,10 +1,10 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SOCIAL_LINKS } from '@/app/data'
 import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, X, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+import { SunIcon, MoonIcon, X, PanelLeftClose, PanelLeftOpen, LayoutGrid, User } from 'lucide-react'
 import useClickOutside from '@/hooks/useClickOutside'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { usePathname } from 'next/navigation'
@@ -13,35 +13,82 @@ import { BackToTopButton } from './back-to-top-button'
 import Image from 'next/image'
 import { useSidebar } from '@/app/context/SidebarContext'
 
+// Reusable Tooltip Component
+const Tooltip = ({ children, label, side = 'left' }: { children: ReactNode, label: string, side?: 'left' | 'right' | 'top' }) => {
+    const positionClasses = {
+        left: 'left-full ml-4',
+        right: 'right-full mr-4',
+        top: 'bottom-full mb-2 left-1/2 -translate-x-1/2'
+    };
+    const animationClasses = {
+        left: '-translate-x-2 group-hover:translate-x-0',
+        right: 'translate-x-2 group-hover:translate-x-0',
+        top: 'translate-y-2 group-hover:translate-y-0'
+    };
+
+    return (
+      <div className="group relative flex items-center">
+        {children}
+        <span
+          className={cn(
+            "pointer-events-none absolute whitespace-nowrap rounded-md bg-zinc-800 px-2 py-1 text-xs text-white opacity-0 transition-all duration-200 delay-150 group-hover:opacity-100 group-hover:delay-1000",
+            positionClasses[side],
+            animationClasses[side]
+          )}
+        >
+          {label}
+        </span>
+      </div>
+    );
+};
+
 const NavLink = ({
   href,
   children,
   onClose,
+  isCollapsed,
+  icon: Icon
 }: {
   href: string
   children: React.ReactNode
   onClose?: () => void
+  isCollapsed?: boolean
+  icon?: React.ElementType
 }) => {
   const pathname = usePathname()
   const isActive = pathname === href
+
+  const linkContent = (
+    <>
+      {Icon && <Icon className={cn("h-5 w-5", !isCollapsed && "mr-3")} />}
+      {!isCollapsed && children}
+    </>
+  );
 
   return (
     <Link
       href={href}
       className={cn(
-        'block transition-colors duration-200 hover:text-zinc-900 dark:hover:text-zinc-100',
+        'flex items-center transition-colors duration-200 hover:text-zinc-900 dark:hover:text-zinc-100',
         isActive
           ? 'font-semibold text-zinc-900 dark:text-zinc-100'
           : 'text-zinc-600 dark:text-zinc-400',
+        isCollapsed ? 'justify-center rounded-lg p-2' : ''
       )}
       onClick={onClose}
     >
-      {children}
+      {isCollapsed ? (
+        <Tooltip label={children as string}>
+          {linkContent}
+        </Tooltip>
+      ) : (
+        linkContent
+      )}
     </Link>
   )
 }
 
-const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) => {
+const ThemeToggle = ({ variant = 'default', isCollapsed = false }: { variant?: 'default' | 'icon', isCollapsed?: boolean }) => {
   const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
@@ -55,13 +102,7 @@ const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) 
       icon: "h-8 w-8 text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white"
   };
 
-  return (
-    <button
-      onClick={toggleTheme}
-      className={cn(baseClasses, variantClasses[variant])}
-      aria-label="Toggle theme"
-      suppressHydrationWarning
-    >
+  const buttonContent = (
       <AnimatePresence initial={false} mode="wait">
         {theme === 'dark' ? (
           <motion.div
@@ -87,7 +128,19 @@ const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) 
           </motion.div>
         )}
       </AnimatePresence>
-    </button>
+  );
+
+  return (
+    <Tooltip label={theme === 'dark' ? "Light Mode" : "Dark Mode"} side={isCollapsed ? 'left' : 'top'}>
+      <button
+        onClick={toggleTheme}
+        className={cn(baseClasses, variantClasses[variant])}
+        aria-label="Toggle theme"
+        suppressHydrationWarning
+      >
+        {buttonContent}
+      </button>
+    </Tooltip>
   )
 }
 
@@ -149,41 +202,40 @@ const Sidebar = ({ isCollapsed, onToggleCollapse }: { isCollapsed: boolean; onTo
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
           <LogoComponent isCollapsed={isCollapsed} />
         </div>
-        {!isCollapsed && (
-            <nav className="space-y-4">
-                <NavLink href="/">Projects</NavLink>
-                <NavLink href="/about">About</NavLink>
-            </nav>
-        )}
+        <nav className="space-y-4">
+            <NavLink href="/" isCollapsed={isCollapsed} icon={LayoutGrid}>Projects</NavLink>
+            <NavLink href="/about" isCollapsed={isCollapsed} icon={User}>About</NavLink>
+        </nav>
       </div>
 
       <div className={cn("w-full", isCollapsed ? 'p-4' : 'p-8')}>
-        <div className={cn("flex items-center", isCollapsed ? 'flex-col gap-4' : 'justify-between')}>
-            {!isCollapsed && (
-                <div className="flex items-center gap-5">
-                    {SOCIAL_LINKS.map((social) => (
-                      <a
-                        key={social.label}
-                        href={social.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
-                      >
-                        <social.icon size={18} />
-                      </a>
-                    ))}
-                </div>
-            )}
-          <div className={cn("flex items-center w-full", isCollapsed ? 'flex-col gap-4' : 'gap-2 justify-end')}>
-            <ThemeToggle />
-            <button
-              onClick={onToggleCollapse}
-              className="relative hidden md:flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-              aria-label="Toggle sidebar"
-            >
-              {isCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-            </button>
+        <div className={cn("flex w-full items-center", isCollapsed ? "flex-col" : "justify-between")}>
+          <div className={cn("flex items-center", isCollapsed ? "flex-col gap-4" : "gap-5")}>
+            {SOCIAL_LINKS.map((social) => (
+              <Tooltip key={social.label} label={social.label} side={isCollapsed ? 'left' : 'top'}>
+                <a
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                >
+                  <social.icon size={18} />
+                </a>
+              </Tooltip>
+            ))}
+          </div>
+          <div className={cn("flex items-center", isCollapsed ? "mt-4 flex-col gap-2" : "gap-2")}>
+            <ThemeToggle isCollapsed={isCollapsed} />
+            <Tooltip label={isCollapsed ? "Expand Navigation" : "Collapse Navigation"} side={isCollapsed ? 'left' : 'top'}>
+                <button
+                  onClick={onToggleCollapse}
+                  className="relative hidden md:flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                  aria-label="Toggle sidebar"
+                >
+                  {isCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+                </button>
+            </Tooltip>
           </div>
         </div>
       </div>
