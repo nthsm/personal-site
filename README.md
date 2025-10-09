@@ -1,4 +1,4 @@
 ## NTHSM
 
-- [Nim Template](https://github.com/ibelick/nim) — open-source website template.
-- [Motion-Primitives](https://motion-primitives.com) for animated components.
+- [Nthsm Template](https://github.com/nthsm/portfolio-template) for a template version of this website.
+- [Motion-Primitives](https://motion-primitives.com) for some animated components.
