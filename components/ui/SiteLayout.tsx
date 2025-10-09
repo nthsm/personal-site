@@ -197,8 +197,8 @@ const LogoComponent = ({ className, onClose, isCollapsed }: { className?: string
 
 
 const Sidebar = ({ isCollapsed, onToggleCollapse }: { isCollapsed: boolean; onToggleCollapse: () => void; }) => (
-    <aside className="flex h-full flex-col bg-zinc-50 dark:bg-zinc-950">
-      <div className={cn("flex-grow", isCollapsed ? 'p-4 pt-8' : 'p-8')}>
+    <aside className="flex h-full flex-col justify-between bg-zinc-50 dark:bg-zinc-950">
+      <div className={cn(isCollapsed ? 'p-4 pt-8' : 'p-8')}>
         <div className={cn("mb-12 flex items-start", isCollapsed ? 'justify-center' : 'justify-between')}>
           <LogoComponent isCollapsed={isCollapsed} />
         </div>
@@ -275,14 +275,14 @@ export default function SiteLayout({
       <div className="md:flex">
         {/* Desktop Sidebar */}
         <div className={cn(
-          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r',
+          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r [will-change:width]',
           'transition-[width] duration-300 ease-in-out',
           isCollapsed ? 'md:w-20' : 'md:w-64'
         )}>
           <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} />
         </div>
         <div className={cn(
-          "hidden md:block md:flex-shrink-0",
+          "hidden md:block md:flex-shrink-0 [will-change:width]",
           'transition-[width] duration-300 ease-in-out',
            isCollapsed ? 'md:w-20' : 'md:w-64'
         )}></div>
