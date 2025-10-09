@@ -13,7 +13,6 @@ import { BackToTopButton } from './back-to-top-button'
 import Image from 'next/image'
 import { useSidebar } from '@/app/context/SidebarContext'
 
-// Reusable Tooltip Component
 const Tooltip = ({ children, label, side = 'left' }: { children: ReactNode, label: string, side?: 'left' | 'right' | 'top' }) => {
     const positionClasses = {
         left: 'left-full ml-4',
@@ -230,7 +229,7 @@ const Sidebar = ({ isCollapsed, onToggleCollapse }: { isCollapsed: boolean; onTo
             <Tooltip label={isCollapsed ? "Expand Navigation" : "Collapse Navigation"} side={isCollapsed ? 'left' : 'top'}>
                 <button
                   onClick={onToggleCollapse}
-                  className="relative hidden md:flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                  className="relative hidden lg:flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-zinc-200 text-zinc-600 transition-colors hover:bg-zinc-300 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
                   aria-label="Toggle sidebar"
                 >
                   {isCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
@@ -260,9 +259,9 @@ export default function SiteLayout({
   if (!hasMounted) {
     return (
        <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-        <div className="md:flex">
-            <div className="hidden md:block md:flex-shrink-0 md:w-64"></div>
-            <main className="flex-1 p-4 md:p-8">
+        <div className="lg:flex">
+            <div className="hidden lg:block lg:flex-shrink-0 lg:w-64"></div>
+            <main className="flex-1 p-4 lg:p-8">
                 {children}
             </main>
         </div>
@@ -272,23 +271,23 @@ export default function SiteLayout({
 
   return (
     <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-      <div className="md:flex">
+      <div className="lg:flex">
         {/* Desktop Sidebar */}
         <div className={cn(
-          'fixed hidden h-full border-zinc-200 dark:border-zinc-800 md:block md:flex-shrink-0 md:border-r [will-change:width]',
+          'fixed hidden h-svh border-zinc-200 dark:border-zinc-800 lg:block lg:flex-shrink-0 lg:border-r [will-change:width]',
           'transition-[width] duration-300 ease-in-out',
-          isCollapsed ? 'md:w-20' : 'md:w-64'
+          isCollapsed ? 'lg:w-20' : 'lg:w-64'
         )}>
           <Sidebar isCollapsed={isCollapsed} onToggleCollapse={() => setIsCollapsed(!isCollapsed)} />
         </div>
         <div className={cn(
-          "hidden md:block md:flex-shrink-0 [will-change:width]",
+          "hidden lg:block lg:flex-shrink-0 [will-change:width]",
           'transition-[width] duration-300 ease-in-out',
-           isCollapsed ? 'md:w-20' : 'md:w-64'
+           isCollapsed ? 'lg:w-20' : 'lg:w-64'
         )}></div>
 
         {/* Mobile Header */}
-        <div className="sticky top-0 z-30 bg-zinc-100/80 backdrop-blur-sm dark:bg-zinc-950/80 md:hidden">
+        <div className="sticky top-0 z-30 bg-zinc-100/80 backdrop-blur-sm dark:bg-zinc-950/80 lg:hidden">
           <header className="flex items-center justify-between border-b border-zinc-200 p-4 dark:border-zinc-800">
             <LogoComponent className="h-6" /> 
             
@@ -329,7 +328,7 @@ export default function SiteLayout({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs md:hidden"
+                className="fixed inset-0 z-40 bg-black/20 backdrop-blur-xs lg:hidden"
                 onClick={() => setIsMenuOpen(false)}
               />
               <motion.div
@@ -338,7 +337,7 @@ export default function SiteLayout({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -20, transition: { duration: 0.15 } }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="fixed top-20 right-4 z-50 origin-top-right md:hidden"
+                className="fixed top-20 right-4 z-50 origin-top-right lg:hidden"
               >
                 <MobileNavMenu onClose={() => setIsMenuOpen(false)} />
               </motion.div>
@@ -346,9 +345,9 @@ export default function SiteLayout({
           )}
         </AnimatePresence>
 
-        <main className="flex-1 p-4 md:p-8">
+        <main className="flex-1 p-4 lg:p-8">
           {showProgressBar && (
-            <div className="sticky top-0 z-20 -mx-8 mb-4 hidden bg-zinc-100 px-8 py-4 dark:bg-zinc-950 md:block">
+            <div className="sticky top-0 z-20 -mx-8 mb-4 hidden bg-zinc-100 px-8 py-4 dark:bg-zinc-950 lg:block">
               <div className="h-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
                 <ScrollProgress
                   className="h-full rounded-full bg-zinc-800 dark:bg-zinc-600"
