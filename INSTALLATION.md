@@ -7,7 +7,7 @@ For a better understanding of the Next.js project structure, refer to the [Next.
 7. **Additional Features**
 
 Want to add more animated components?
-Check out [Motion-Primitives](https://motion-primitives.com/) for additional animation components and templates. If you want something else DM on [X](https://x.com/Ibelick).
+Check out [Motion-Primitives](https://motion-primitives.com/) for additional animation components and templates.
 
 8.  **Deployment**
 
