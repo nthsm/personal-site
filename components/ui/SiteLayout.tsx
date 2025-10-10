@@ -96,29 +96,12 @@ const ThemeToggle = ({ variant = 'default' }: { variant?: 'default' | 'icon' }) 
 
 const MobileNavMenu = ({ onClose }: { onClose?: () => void }) => (
     <div className="bg-zinc-100/80 dark:bg-zinc-900/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-800">
-      <nav className="flex flex-col space-y-4 mb-6">
+      <nav className="flex flex-col space-y-4">
         <NavLink href="/" onClose={onClose}>Work</NavLink>
         <NavLink href="/about" onClose={onClose}>About</NavLink>
         <NavLink href="/experience" onClose={onClose}>Experience</NavLink>
         <NavLink href="/contact" onClose={onClose}>Contact</NavLink>
       </nav>
-      <div className="flex items-center justify-end">
-        <div className="flex items-center gap-2">
-            {SOCIAL_LINKS.map((social) => (
-              <a
-                key={social.label}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="p-2 text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
-              >
-                <social.icon size={18} />
-              </a>
-            ))}
-            <ThemeToggle variant="icon" />
-        </div>
-      </div>
     </div>
 );
 
@@ -164,25 +147,28 @@ export default function SiteLayout({
             <ThemeToggle />
           </div>
 
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="z-50 -mr-2 p-2 text-zinc-600 dark:text-zinc-400 lg:hidden"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="flex items-center gap-2 lg:hidden">
+            <ThemeToggle variant="icon" />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="z-50 -mr-2 p-2 text-zinc-600 dark:text-zinc-400"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </header>
         {showProgressBar && (
           <ScrollProgress
