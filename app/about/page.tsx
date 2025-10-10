@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { ArrowUpRight, Download, Eye } from 'lucide-react'
+import { ArrowUpRight, Download, Eye, Briefcase, Mail } from 'lucide-react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between">
           
           <div className="flex-1"> 
-            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 gradient-text leading-normal")}>
+            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 gradient-text leading-normal inline-block")}>
                 Hello, I'm Nathan Smith.
             </h1>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300 not-prose">
@@ -46,8 +46,7 @@ export default function AboutPage() {
             
             <div className="prose prose-zinc prose-xl dark:prose-invert max-w-none">
               <p>
-                I love the blend of <span className="not-prose gradient-text font-bold"> creativity, analytical thinking, people skills, and problem-solving </span>
-                that UX design and research requires.
+                I love the blend of <span className="not-prose gradient-text font-bold"> creativity, analytical thinking, people skills, and problem-solving </span> that UX design and research requires.
               </p>
               <p>
                 As a designer, I lead with my core talents of <span className="not-prose gradient-text font-bold"> organization and empathy </span> to create products that are <span className="not-prose gradient-text font-bold"> equitable, enjoyable, and useful </span> for all people.
@@ -64,8 +63,7 @@ export default function AboutPage() {
                   This helps me <span className="not-prose gradient-text font-bold"> understand both the technical and business sides</span> of product development.
               </p>
               <p>
-                If you want to know <span className="not-prose gradient-text font-bold"> more about my professional experience, </span>
-                you can view my resume on{' '}
+                If you want to know <span className="not-prose gradient-text font-bold"> more about my professional experience, </span> you can view my resume on{' '}
                 <a
                   href="https://www.linkedin.com/in/nthsm"
                   target="_blank"
@@ -83,13 +81,27 @@ export default function AboutPage() {
             </div>
           </div> 
 
-          <div className="pt-8">
+          <div className="pt-8 flex flex-col sm:flex-row gap-4">
             <Link
               href="/"
               className="inline-flex justify-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-lg font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline"
             >
               <Eye className="h-5 w-5 mr-2" />
               View My Work
+            </Link>
+            <Link
+              href="/experience"
+              className="inline-flex justify-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-lg font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline"
+            >
+              <Briefcase className="h-5 w-5 mr-2" />
+              Go To Resume
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex justify-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-lg font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline"
+            >
+              <Mail className="h-5 w-5 mr-2" />
+              Get In Contact
             </Link>
           </div>
 
