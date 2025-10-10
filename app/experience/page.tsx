@@ -121,7 +121,7 @@ export default function ExperiencePage() {
                 duration="2024 — Present"
                 location="Remote"
             >
-                <p>As a freelance designer, I've had the opportunity to work with a diverse range of clients on various projects. My work typically involves user research, creating wireframes and prototypes, and conducting usability tests to refine designs.</p>
+                <p>As a freelance designer, my work typically involves user research, creating wireframes and prototypes, and conducting usability tests to refine designs.</p>
             </ExperienceItem>
             <ExperienceItem 
                 title="Guest Experience Associate"
