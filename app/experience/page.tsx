@@ -25,10 +25,9 @@ const itemVariants = {
 
 const Section = ({ title, icon: Icon, children }: { title: string; icon: React.ElementType; children: React.ReactNode }) => (
     <motion.section variants={itemVariants} className="mb-12">
-        {/* FIX: Removed 'not-prose' */}
         <h2 className="flex items-center text-3xl font-bold mb-6 border-b border-zinc-200 dark:border-zinc-800 pb-3">
             <Icon className="h-7 w-7 mr-3 text-zinc-500" />
-            <span className="gradient-text">{title}</span>
+            <span>{title}</span>
         </h2>
         {children}
     </motion.section>
@@ -38,8 +37,7 @@ const ExperienceItem = ({ title, company, duration, location }: { title: string;
     <div className="relative pl-8 mb-8 last:mb-0">
         <div className="absolute left-0 top-1 h-full w-px bg-zinc-200 dark:bg-zinc-800"></div>
         <div className="absolute left-[-5px] top-1.5 h-3 w-3 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-        {/* FIX: Removed 'not-prose' */}
-        <h3 className="text-xl font-semibold gradient-text">{title}</h3>
+        <h3 className="text-xl font-semibold gradient-text md:inline-block">{title}</h3>
         <p className="text-md text-zinc-600 dark:text-zinc-400">{company}</p>
         <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-500 mt-1">
             <span>{duration}</span>
@@ -53,8 +51,7 @@ const EducationItem = ({ degree, university, duration, location }: { degree: str
      <div className="relative pl-8 mb-8 last:mb-0">
         <div className="absolute left-0 top-1 h-full w-px bg-zinc-200 dark:bg-zinc-800"></div>
         <div className="absolute left-[-5px] top-1.5 h-3 w-3 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-        {/* FIX: Removed 'not-prose' */}
-        <h3 className="text-xl font-semibold gradient-text">{degree}</h3>
+        <h3 className="text-xl font-semibold gradient-text md:inline-block">{degree}</h3>
         <p className="text-md text-zinc-600 dark:text-zinc-400">{university}</p>
         <div className="flex items-center text-sm text-zinc-500 dark:text-zinc-500 mt-1">
             <span>{duration}</span>
@@ -78,10 +75,8 @@ export default function ExperiencePage() {
         animate="visible"
         className="bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-lg"
     >
-        <motion.div variants={itemVariants} className="text-center mb-12">
-            {/* FIX: Removed 'not-prose' */}
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 gradient-text leading-normal">{`Nathan Smith`}</h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400">{`UX Designer with a passion for building intuitive, seamless, and user-centered products.`}</p>
+        <motion.div variants={itemVariants} className="text-left mb-12">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 gradient-text leading-normal md:inline-block">{`Where I've been and what I've done.`}</h1>
         </motion.div>
 
         <Section title="Skills" icon={Lightbulb}>
@@ -94,16 +89,16 @@ export default function ExperiencePage() {
 
         <Section title="Experience" icon={Briefcase}>
             <ExperienceItem 
-                title="UX Intern"
-                company="FSU IT Services"
-                duration="2026 — Present"
-                location="Tallahassee, FL"
-            />
-            <ExperienceItem 
                 title="Freelance UX Designer"
                 company="Self-Employed"
                 duration="2024 — Present"
                 location="Remote"
+            />
+            <ExperienceItem 
+                title="Guest Experience Associate"
+                company="Target Corp."
+                duration="2022 — Present"
+                location="Tallahassee, FL"
             />
         </Section>
 
