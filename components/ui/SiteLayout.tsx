@@ -1,10 +1,10 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect, useRef, ReactNode } from 'react'
+import { useState, useRef, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SOCIAL_LINKS } from '@/app/data'
 import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, X, PanelLeftClose, PanelLeftOpen, LayoutGrid, User } from 'lucide-react'
+import { SunIcon, MoonIcon, X, PanelLeftClose, PanelLeftOpen, LayoutGrid, User, Briefcase, Mail } from 'lucide-react'
 import useClickOutside from '@/hooks/useClickOutside'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { usePathname } from 'next/navigation'
@@ -148,6 +148,8 @@ const MobileNavMenu = ({ onClose }: { onClose?: () => void }) => (
       <nav className="space-y-4 mb-6">
         <NavLink href="/" onClose={onClose}>Projects</NavLink>
         <NavLink href="/about" onClose={onClose}>About</NavLink>
+        <NavLink href="/experience" onClose={onClose}>Experience</NavLink>
+        <NavLink href="/contact" onClose={onClose}>Contact</NavLink>
       </nav>
       <div className="flex items-center justify-end">
         <div className="flex items-center gap-2">
@@ -204,26 +206,13 @@ const Sidebar = ({ isCollapsed, onToggleCollapse }: { isCollapsed: boolean; onTo
         <nav className="space-y-4">
             <NavLink href="/" isCollapsed={isCollapsed} icon={LayoutGrid}>Projects</NavLink>
             <NavLink href="/about" isCollapsed={isCollapsed} icon={User}>About</NavLink>
+            <NavLink href="/experience" isCollapsed={isCollapsed} icon={Briefcase}>Experience</NavLink>
+            <NavLink href="/contact" isCollapsed={isCollapsed} icon={Mail}>Contact</NavLink>
         </nav>
       </div>
 
       <div className={cn("w-full", isCollapsed ? 'p-4' : 'p-8')}>
         <div className={cn("flex w-full items-center", isCollapsed ? "flex-col" : "justify-between")}>
-          <div className={cn("flex items-center", isCollapsed ? "flex-col gap-4" : "gap-5")}>
-            {SOCIAL_LINKS.map((social) => (
-              <Tooltip key={social.label} label={social.label} side={isCollapsed ? 'left' : 'top'}>
-                <a
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
-                >
-                  <social.icon size={18} />
-                </a>
-              </Tooltip>
-            ))}
-          </div>
           <div className={cn("flex items-center", isCollapsed ? "mt-4 flex-col gap-2" : "gap-2")}>
             <ThemeToggle isCollapsed={isCollapsed} />
             <Tooltip label={isCollapsed ? "Expand Navigation" : "Collapse Navigation"} side={isCollapsed ? 'left' : 'top'}>
