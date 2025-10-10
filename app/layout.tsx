@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Figtree } from 'next/font/google'
+import { Figtree, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { SidebarProvider } from './context/SidebarContext'
 import Script from 'next/script'
 
 export const viewport: Viewport = {
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Projects — Nathan Smith',
+    default: 'Work — Nathan Smith',
     template: '%s — Nathan Smith'
   },
   description: 'Personal website and living portfolio for Nathan Smith, a FSU graduate student and Product Designer.',
@@ -39,6 +38,11 @@ const figtree = Figtree({
   subsets: ['latin'],
 })
 
+const playfairDisplay = Playfair_Display({
+  variable: '--font-playfair-display',
+  subsets: ['latin'],
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${figtree.variable} bg-zinc-50 tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${figtree.variable} ${playfairDisplay.variable} bg-zinc-50 tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -55,9 +59,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <SidebarProvider>
-            {children}
-          </SidebarProvider>
+          {children}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
