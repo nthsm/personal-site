@@ -34,10 +34,10 @@ export default function AboutPage() {
       animate="visible"
     >
       <motion.div variants={itemVariants}>
-        <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900 h-full flex flex-col justify-between">
+        <div className="h-full flex flex-col justify-between">
           
           <div className="flex-1"> 
-            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 gradient-text leading-normal inline-block")}>
+            <h1 className={cn("text-5xl md:text-6xl font-serif tracking-tight mb-4 text-zinc-900 dark:text-zinc-100 leading-normal inline-block")}>
                 Hello, I'm Nathan Smith.
             </h1>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300 not-prose">
