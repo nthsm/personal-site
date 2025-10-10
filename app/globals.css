@@ -15,10 +15,11 @@
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #0B698E 2%, #0B8E72 100%);
+  background: linear-gradient(to right, #0B698E 0%, #0B8E72 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: transparent !important;
+  font-weight: 800 !important;
 }
 
 body {
