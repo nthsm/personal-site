@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Briefcase, GraduationCap, Award, Lightbulb } from 'lucide-react'
+import { Briefcase, GraduationCap, Award, Lightbulb, LayoutGrid } from 'lucide-react'
+import Link from 'next/link'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,7 +34,7 @@ const Section = ({ title, icon: Icon, children }: { title: string; icon: React.E
     </motion.section>
 );
 
-const ExperienceItem = ({ title, company, duration, location }: { title: string; company: string; duration: string; location: string }) => (
+const ExperienceItem = ({ title, company, duration, location, children }: { title: string; company: string; duration: string; location: string; children?: React.ReactNode }) => (
     <div className="relative pl-8 mb-8 last:mb-0">
         <div className="absolute left-0 top-1 h-full w-px bg-zinc-200 dark:bg-zinc-800"></div>
         <div className="absolute left-[-5px] top-1.5 h-3 w-3 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
@@ -44,6 +45,7 @@ const ExperienceItem = ({ title, company, duration, location }: { title: string;
             <span className="mx-2">•</span>
             <span>{location}</span>
         </div>
+        {children && <div className="prose prose-zinc dark:prose-invert mt-2">{children}</div>}
     </div>
 );
 
@@ -73,17 +75,42 @@ export default function ExperiencePage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-lg"
     >
         <motion.div variants={itemVariants} className="text-left mb-12">
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 gradient-text leading-normal md:inline-block">{`Where I've been and what I've done.`}</h1>
+            <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-zinc-900 dark:text-zinc-100">{`Where I've been and what I've done.`}</h1>
         </motion.div>
 
         <Section title="Skills" icon={Lightbulb}>
-            <div className="flex flex-wrap gap-2">
-                <SkillPill skill="Figma" />
-                <SkillPill skill="Prototyping" />
-                <SkillPill skill="Wireframes" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 className="font-semibold text-lg mb-2">Design</h3>
+                    <div className="flex flex-wrap gap-2">
+                        <SkillPill skill="Figma" />
+                        <SkillPill skill="Prototyping" />
+                        <SkillPill skill="Wireframing" />
+                        <SkillPill skill="User Research" />
+                        <SkillPill skill="Usability Testing" />
+                    </div>
+                </div>
+                <div>
+                    <h3 className="font-semibold text-lg mb-2">Development</h3>
+                    <div className="flex flex-wrap gap-2">
+                        <SkillPill skill="HTML" />
+                        <SkillPill skill="CSS" />
+                        <SkillPill skill="JavaScript" />
+                        <SkillPill skill="React" />
+                    </div>
+                </div>
+                <div>
+                    <h3 className="font-semibold text-lg mb-2">Tools</h3>
+                    <div className="flex flex-wrap gap-2">
+                        <SkillPill skill="Obsidian" />
+                        <SkillPill skill="Jira" />
+                        <SkillPill skill="Git" />
+                        <SkillPill skill="Google Slides" />
+                        <SkillPill skill="Google Forms" />
+                    </div>
+                </div>
             </div>
         </Section>
 
@@ -93,13 +120,17 @@ export default function ExperiencePage() {
                 company="Self-Employed"
                 duration="2024 — Present"
                 location="Remote"
-            />
+            >
+                <p>As a freelance designer, I've had the opportunity to work with a diverse range of clients on various projects. My work typically involves user research, creating wireframes and prototypes, and conducting usability tests to refine designs.</p>
+            </ExperienceItem>
             <ExperienceItem 
                 title="Guest Experience Associate"
                 company="Target Corp."
                 duration="2022 — Present"
                 location="Tallahassee, FL"
-            />
+            >
+                <p>In this role, I focus on ensuring a positive experience for every guest. My responsibilities include addressing customer needs, resolving issues, and gathering feedback to improve in-store processes. This has given me valuable insights into customer behavior and satisfaction.</p>
+            </ExperienceItem>
         </Section>
 
         <Section title="Education" icon={GraduationCap}>
@@ -119,9 +150,17 @@ export default function ExperiencePage() {
         
         <Section title="Certifications" icon={Award}>
             <div className="space-y-4">
-                <p className="text-lg text-zinc-800 dark:text-zinc-200">{`Google UX Design Professional Certificate`} - <span className="text-zinc-500 dark:text-zinc-400 italic">{`In Progress`}</span></p>
+                <p className="text-lg text-zinc-800 dark:text-zinc-200">
+                    {`Google UX Design Professional Certificate`} - <span className="text-zinc-500 dark:text-zinc-400 italic">{`In Progress`}</span>
+                </p>
                 <p className="text-lg text-zinc-800 dark:text-zinc-200">{`Microsoft Office Specialist: Excel Associate`} - <span className="text-zinc-500 dark:text-zinc-400 italic">{`Nov. 2023`}</span></p>
             </div>
+        </Section>
+
+        <Section title="Projects" icon={LayoutGrid}>
+            <Link href="/" className="inline-flex items-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline">
+                View all of my work here!
+            </Link>
         </Section>
     </motion.div>
   )
