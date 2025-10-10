@@ -86,8 +86,8 @@ export default function ContactPage() {
         animate="visible"
       >
         <motion.div variants={itemVariants}>
-          <div className="bg-white p-8 rounded-xl shadow-lg dark:bg-zinc-900"> 
-            <h1 className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 gradient-text leading-normal md:inline-block")}>
+          <div> 
+            <h1 className={cn("text-5xl md:text-6xl font-serif tracking-tight mb-4 text-zinc-900 dark:text-zinc-100 leading-normal inline-block")}>
                 Let's build something great.
             </h1>
             <p className="text-xl md:text-2xl mb-12 text-zinc-700 dark:text-zinc-300">
@@ -108,7 +108,7 @@ export default function ContactPage() {
                   <div className="mt-1">
                     <select
                       name="reason" id="reason" required value={formData.reason} onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-50 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     >
                       <option>General Inquiry</option>
                       <option>Project Collaboration</option>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   </label>
                   <div className="mt-1">
                     <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-50 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     />
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   </label>
                   <div className="mt-1">
                     <input id="email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-50 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     />
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                   </label>
                   <div className="mt-1">
                     <textarea id="message" name="message" rows={4} required value={formData.message} onChange={handleChange}
-                      className="block w-full rounded-md border-none bg-zinc-100 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
+                      className="block w-full rounded-md border-none bg-zinc-50 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-zinc-800 dark:text-zinc-50 sm:text-lg p-3"
                     ></textarea>
                   </div>
                 </div>
