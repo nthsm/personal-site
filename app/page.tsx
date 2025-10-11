@@ -38,7 +38,7 @@ export default function HomePage() {
         variants={containerVariants}
       >
         <motion.div className="mb-24 text-left" variants={itemVariants}>
-            <h1 className="font-serif text-6xl tracking-tight text-zinc-900 dark:text-zinc-100 md:text-7xl">
+            <h1 className="text-6xl font-bold tracking-tight md:text-7xl gradient-text inline-block">
                 Nathan Smith
             </h1>
             <div className="mt-4 space-y-1 text-base text-zinc-600 dark:text-zinc-400 md:text-lg">
@@ -83,7 +83,7 @@ export default function HomePage() {
                   index % 2 !== 0 && 'md:order-1',
                 )}
               >
-                <h2 className="font-serif text-3xl tracking-tight text-zinc-900 dark:text-zinc-100 md:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 md:text-4xl">
                   {project.name}
                 </h2>
                 <p className="text-lg text-zinc-600 dark:text-zinc-400">
