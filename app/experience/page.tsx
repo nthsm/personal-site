@@ -77,7 +77,7 @@ export default function ExperiencePage() {
         animate="visible"
     >
         <motion.div variants={itemVariants} className="text-left mb-12">
-            <h1 className="font-serif text-5xl md:text-6xl tracking-tight text-zinc-900 dark:text-zinc-100">{`Where I've been and what I've done.`}</h1>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 gradient-text leading-normal md:inline-block">{`Where I've been and what I've done.`}</h1>
         </motion.div>
 
         <Section title="Skills" icon={Lightbulb}>
@@ -121,7 +121,7 @@ export default function ExperiencePage() {
                 duration="2024 — Present"
                 location="Remote"
             >
-                <p>As a freelance designer, my work typically involves user research, creating wireframes and prototypes, and conducting usability tests to refine designs.</p>
+                <p>As a freelance designer my work typically involves user research, creating wireframes and prototypes, and conducting usability tests to refine designs.</p>
             </ExperienceItem>
             <ExperienceItem 
                 title="Guest Experience Associate"
@@ -156,11 +156,13 @@ export default function ExperiencePage() {
                 <p className="text-lg text-zinc-800 dark:text-zinc-200">{`Microsoft Office Specialist: Excel Associate`} - <span className="text-zinc-500 dark:text-zinc-400 italic">{`Nov. 2023`}</span></p>
             </div>
         </Section>
-
+        
         <Section title="Projects" icon={LayoutGrid}>
-            <Link href="/" className="inline-flex items-center rounded-md border border-transparent bg-zinc-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-800 no-underline">
-                View all of my work here!
-            </Link>
+            <p className="text-lg">
+                <Link href="/" className="text-current no-underline hover:underline">
+                    View all of my projects here!
+                </Link>
+            </p>
         </Section>
     </motion.div>
   )
