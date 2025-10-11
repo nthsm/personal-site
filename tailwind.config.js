@@ -7,10 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['var(--font-figtree)'],
-        serif: ['var(--font-playfair-display)'],
-      },
       screens: {
         // Default breakpoints for mobile and tablets
         'sm': '640px',   // Small tablets & landscape phones
