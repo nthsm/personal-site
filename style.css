@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amarna:ital,wght@0,100..700;1,100..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amarna:ital,wght@0,100..700;1,100..700&family=Amatic+SC:wght@400;700&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Press+Start+2P&family=Rubik+Mono+One&display=swap');
 
 /* --- BASE STYLES --- */
 * {
@@ -82,14 +82,13 @@ a:hover {
     padding: 0 20px;
 }
 
-h1, h2 {
-    font-family: 'Figtree', sans-serif;
-}
-
 h1 {
+    font-family: "Crimson Pro", serif;
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 1px;
+    padding-top: 20px;
+    margin-top: -20px;
     margin-bottom: 10px;
     --x: 50%;
     --y: 50%;
@@ -106,7 +105,7 @@ h1 {
 
 h1 .letter {
     display: inline-block;
-    transition: transform 0.2s ease-out;
+    transition: transform 0.3s ease-out;
     color: inherit; 
 }
 
@@ -148,7 +147,6 @@ h1 .letter:hover {
 
 /* --- MOBILE TWEAKS --- */
 @media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1rem; }
-    .links { flex-direction: column; gap: 15px; }
+    h1 { font-size: 2.2rem; padding-bottom: 20px; }
+    .links { flex-direction: column; gap: 20px; }
 }
