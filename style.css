@@ -8,18 +8,10 @@
 }
 
 :root {
-    --bg-color: #e0e0e0;
+    --bg-color: #e7e7e7;
     --text-color: #111111;
-    --accent-color: #dd8500;
+    --accent-color: #4f9664;
     --sub-text: #3d3d3d;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Google Sans', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
 }
 
 html, body {
@@ -30,6 +22,14 @@ html, body {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Google Sans', sans-serif;
+    line-height: 1.1;
+    overflow-x: hidden;
 }
 
 a {
@@ -89,28 +89,44 @@ h1, h2 {
 h1 {
     font-size: 3rem;
     font-weight: 700;
+    letter-spacing: 1px;
     margin-bottom: 10px;
-    letter-spacing: -2px;
+    --x: 50%;
+    --y: 50%;
+    background: radial-gradient(
+        circle 250px at var(--x) var(--y),
+        #4f9664 0%,
+        #111111 100%
+    );
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
 }
 
-h2 {
-    font-size: 1.2rem;
-    color: var(--sub-text);
-    font-weight: 400;
-    margin-bottom: 40px;
+h1 .letter {
+    display: inline-block;
+    transition: transform 0.2s ease-out;
+    color: inherit; 
+}
+
+h1 .letter:hover {
+    transform: translateY(-10px);
 }
 
 .links {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     font-size: 2rem;
-    margin-top: 20px;
 }
 
 .links a {
-    color: var(--text-color);
+    color: #000000;
     transition: all 0.3s ease;
     border: none;
+    cursor: inherit;
+    padding: 15px; 
+    display: inline-block;
 }
 
 .links a:hover {
@@ -118,31 +134,16 @@ h2 {
     transform: translateY(-3px);
 }
 
-/* --- ABOUT SECTION --- */
-.about {
-    min-height: 100vh;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-}
-
-.about p {
-    font-size: 1rem;
-    color: #3d3d3d;
-}
-
-.highlight {
-    color: var(--accent-color);
-}
-
 /* --- ANIMATIONS --- */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -200% center;
+    }
 }
 
 /* --- MOBILE TWEAKS --- */
